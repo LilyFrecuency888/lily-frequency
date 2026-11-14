@@ -1,0 +1,6 @@
+{
+  "appId": "com.lilyfrequency.app",
+  "appName": "Lily Frequency",
+  "webDir": "www",
+  "android": { "backgroundColor": "#120f1a" }
+}
