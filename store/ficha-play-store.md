@@ -10,8 +10,12 @@ Lily Frequency es tu espacio de bienestar sonoro. Más de 150 programas de frecu
 ✿ Tres modos de sonido: tono puro, binaural (con audífonos) e isocrónico (con parlante).
 ✿ Meditaciones y respiraciones guiadas con indicaciones en pantalla: respiración ascendente, coherencia del corazón, 4-7-8, cuadrada y más.
 ✿ Guía de alimentación consciente: energía según la tradición china y nutrientes de más de 50 alimentos.
-✿ Mente de cura: acompañamiento con calma y mente positiva durante el tratamiento médico de más de 30 condiciones.
 ✿ Entrenamiento de intuición con colores, formas y cartas, con marcador frente al azar.
+✿ Modo inmersivo con geometría sagrada (flor de la vida y merkaba) que respira contigo.
+✿ Ambientes para mezclar: lluvia, mar, viento del bosque y cuencos.
+✿ Respiración guiada con voz en español y vibración suave para seguirla con los ojos cerrados.
+✿ Mi pulso: mide tu ritmo antes y después de tu sesión con la cámara del teléfono.
+✿ Diario de intención, racha de días, temporizador para dormir y recordatorio diario.
 ✿ Frecuencia libre: crea tus propias secuencias y guárdalas.
 ✿ Sesiones a distancia: tu terapeuta te envía un código con tu sesión personalizada e intención.
 ✿ Membresía con código mensual para abrir todos los programas.
