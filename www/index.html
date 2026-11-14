@@ -401,6 +401,7 @@ header.top{background:var(--headbg);margin:calc(-14px - env(safe-area-inset-top,
 <button type="button" class="ask" id="askBtn">Pregúntame</button>
 <div class="toast" id="toast" role="status"></div>
 
+<script src="perfiles-core.js"></script>
 <script>
 /* ================= CONFIGURACIÓN (cambiar antes de publicar) ================= */
 const CONFIG={
@@ -951,6 +952,7 @@ renderCats();renderMember();renderSeq();renderMy();renderRx();renderHistory();
 showTab(store.get("lf-tab","programas"));
 load(PROGRAMS.find(p=>p.id==="sol528"));
 </script>
+<script src="perfiles.js"></script>
 <script src="extras.js"></script>
 </body>
 </html>
