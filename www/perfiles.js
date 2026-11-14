@@ -210,5 +210,10 @@ if(typeof _photoSet==="function")window.photoSet=function(){_photoSet();
   const ph=store.get("lf-photo",null),L=profs(),i=L.findIndex(x=>x.id===actId());
   if(i>=0&&L[i].photo!==ph){L[i].photo=ph||null;pset("lf-profiles",L);renderStrip();list2()}};
 
+/* lo que necesita el modo terapeuta, que vive en terapeuta.js */
+window.LilyT={setAssign,openCupo,openAdd,renderStrip,renderPlan,markPlan,list2,
+  me,profs,actId,cupo,cupoCode,CUPOS,plan,ava,ico,sheet,q,pget,pset,
+  esTerapeuta:()=>cupo().personas>=11};
+
 renderPlan();markPlan();
 })();
