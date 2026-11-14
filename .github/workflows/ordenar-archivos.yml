@@ -1,0 +1,26 @@
+name: Ordenar archivos (una sola vez)
+
+on:
+  push:
+    paths: ['.github/workflows/ordenar-archivos.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ordenar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Mover el contenido de lily-frequency-github a la raiz
+        run: |
+          if [ -d lily-frequency-github ]; then
+            cp -a lily-frequency-github/. .
+            git rm -r -q lily-frequency-github
+            git add -A
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Mover archivos de la app a la raiz del repositorio"
+            git push
+          fi
