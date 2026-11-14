@@ -94,22 +94,72 @@ var FAM={
  "ojo":"Centro de la intuición y la visión interior.",
  "corona":"Centro de la conexión amplia y el silencio."
 };
+/* ---- planetas: cualidad y lo que sintonizas ---- */
+var PL={
+"pl-tierra-dia":"Cualidad terrestre: el tono del día de la Tierra. Sintonizas arraigo, presencia en el cuerpo y ganas de hacer. Para empezar el día con los pies en el suelo.",
+"pl-sol":"Cualidad solar: centro, identidad y confianza. Sintonizas tu lugar propio, tu brillo y la energía vital que irradias sin esfuerzo.",
+"pl-luna":"Cualidad lunar: emoción, ciclos, intuición y descanso. Sintonizas tu mundo interior y lo que de verdad estás sintiendo debajo del ruido.",
+"pl-mercurio":"Cualidad mercurial: palabra, pensamiento ágil e intercambio. Sintonizas claridad para hablar, escribir, estudiar y entenderte con otros.",
+"pl-venus":"Cualidad de Venus: amor, belleza, placer y valor propio. Sintonizas tu capacidad de atraer, de recibir y de disfrutar sin culpa.",
+"pl-marte":"Cualidad marcial: acción, coraje y límites. Sintonizas la fuerza para arrancar lo que postergas y para defender tu espacio sin pelear.",
+"pl-jupiter":"Cualidad jupiteriana: expansión, abundancia, fe y generosidad. Sintonizas apertura y la sensación de que cabe más de lo que creías.",
+"pl-saturno":"Cualidad saturnina: estructura, madurez y tiempo. Sintonizas disciplina sin dureza y la capacidad de sostener lo que empezaste.",
+"pl-urano":"Cualidad uraniana: ruptura, originalidad y libertad. Sintonizas el cambio que venías postergando y la valentía de hacerlo distinto.",
+"pl-neptuno":"Cualidad neptuniana: sueño, imaginación, compasión y disolución. Sintonizas lo sutil, lo simbólico y lo que no necesita explicación.",
+"pl-pluton":"Cualidad plutoniana: poder profundo, verdad y renacimiento. Sintonizas lo que ya está listo para transformarse, aunque duela soltarlo.",
+/* ---- chakras ---- */
+"ch-raiz":"Centro de la seguridad y el arraigo. Para cuando te sientes flotando, sin piso o con el cuerpo en alerta.",
+"ch-sacro":"Centro del disfrute, la creatividad y el placer. Para reconectar con las ganas cuando todo se volvió obligación.",
+"ch-plexo":"Centro del poder personal y la voluntad. Para sostener tu lugar, decidir y poder decir que no.",
+"ch-corazon":"Centro del amor y la compasión, hacia otros y hacia ti. Para abrir después de una herida.",
+"ch-garganta":"Centro de la expresión y la verdad. Para decir lo que llevas tiempo callando.",
+"ch-tercer":"Centro de la intuición y la visión interior. Para ver con claridad lo que ya sabes.",
+"ch-corona":"Centro de la conexión amplia y el propósito. Para el silencio y la escucha de algo más grande.",
+/* ---- hemisferios ---- */
+"hemi-completo":"El sonido cruza de un oído al otro, primero de derecha a izquierda y luego al revés, para que los dos hemisferios trabajen juntos. Necesita audífonos.",
+"hemi-der-izq":"El cruce va de lo intuitivo a lo lógico: te ayuda a aterrizar una idea y pasar a la acción. Con audífonos.",
+"hemi-izq-der":"El cruce va de lo lógico a lo creativo: para destrabarte cuando llevas rato pensando de más. Con audífonos.",
+"hemi-theta":"Alternancia muy lenta en theta, el estado donde trabaja el subconsciente. Para meditación profunda, con audífonos.",
+/* ---- diapasones ---- */
+"dp-corporales":"La pareja clásica de la terapia de sonido: Do 256 y Sol 384, una quinta justa, uno en cada oído. Es la base de todo el trabajo con diapasones.",
+"dp-quinta-larga":"La misma quinta justa durante media hora. Para sesión de camilla o como fondo mientras trabajas.",
+"dp-otto128":"El diapasón de cuerpo más usado. Grave y envolvente, se aplica sobre músculo y hueso para tensión y anclaje.",
+"dp-otto64":"La mitad del Otto 128. Más profundo: se siente en el cuerpo más de lo que se oye.",
+"dp-otto32":"El más grave de la serie Otto. Necesita audífonos buenos o parlante con graves para apreciarlo.",
+"dp-otto-serie":"Los tres Otto en orden, de 128 a 64 y a 32, como se usan en una sesión completa de diapasones corporales.",
+"dp-angel":"Los tres agudos del set angelical. Muy brillantes y cortantes: se usan alrededor de la cabeza. Pon el volumen bajo.",
+"dp-pitagorica":"Los ocho diapasones del set armónico, de 256 a 512 Hz. Recorre la escala completa para encontrar cuál te resuena.",
+"dp-om":"El tono del año terrestre, el diapasón más usado para meditar. Grave, constante y muy sostenedor.",
+"dp-nervioso":"128 Hz de cuerpo con pulso que baja de alfa a theta. Para después de un día cargado.",
+/* ---- subliminales ---- */
+"sub-pareja":"Afirmaciones en primera persona sobre 639 Hz, la frecuencia de los vínculos. Escúchalas sin discutirlas.",
+"sub-autoconcepto":"Cambia cómo te hablas de ti. Afirmaciones sobre 528 y 396 Hz para la voz que exige y critica.",
+"sub-magnetismo":"Presencia y seguridad: ocupar tu espacio sin pedir permiso. Plexo solar con 528 Hz.",
+"sub-relaciones":"Para vínculos que quieres cuidar: escuchar, poner límites y soltar la necesidad de tener la razón.",
+"sub-merecer":"Para quien da mucho y recibe poco. Trabaja el permiso de recibir sin sentir culpa.",
+"sub-dormir":"Las frases entran mientras el cuerpo baja a delta. Ponla y déjala sonando toda la noche."
+};
+for(var k in PL)B[k]=PL[k];
+
 function ben(id){
   if(!id)return "";
   if(B[id])return B[id];
+  if(/^adn\d+$/.test(id))return "Un bloque del decreto de Reprogramación Cuántica del ADN al Punto Cero, sobre 528 Hz en theta. Escúchalo cada noche durante los 21 días.";
   for(var k in FAM){if(id.indexOf(k)===0||id.indexOf("-"+k)>=0)return FAM[k]}
   return "";
 }
 
 var st=document.createElement("style");
-st.textContent="#lib .card .bn{display:block;font-size:.8rem;line-height:1.45;color:var(--muted);opacity:.92;margin:4px 0 2px}";
+st.textContent="#lib .card .bn{display:block;font-size:.82rem;line-height:1.45;color:var(--muted);opacity:.95;margin:6px 0 2px;border-top:1px solid var(--line);padding-top:6px}";
 document.head.appendChild(st);
 
+/* solo en el programa que está seleccionado */
 function pintar(){
   var cards=document.querySelectorAll("#lib .card");
   for(var i=0;i<cards.length;i++){
-    var c=cards[i];
-    if(c.querySelector(".bn"))continue;
+    var c=cards[i], tiene=c.querySelector(".bn"), act=c.classList.contains("active");
+    if(!act){if(tiene)tiene.remove();continue}
+    if(tiene)continue;
     var t=ben(c.dataset.id); if(!t)continue;
     var d=c.querySelector(".d"); if(!d)continue;
     var s=document.createElement("span"); s.className="bn"; s.textContent=t;
