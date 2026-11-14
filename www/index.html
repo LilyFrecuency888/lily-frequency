@@ -578,7 +578,7 @@ const PROGRAMS=[
    .map(([id,n,f,d])=>P("pl-"+id,"Planetarias",n+" · "+f+" Hz",d,[[f,0,T,10,n]])),
 ];
 const CATS=["Todos","Favoritos","Guiadas","Tarareo","Música","Mente","Ondas","Emociones","Sueño","Energía","Cuerpo","Acompañamiento","Espiritual","Chakras","Solfeggio","Planetarias"];
-const MODE_NAME={binaural:"Binaural",iso:"Isocrónico",pure:"Tono puro"};
+const MODE_NAME={binaural:"Binaural",iso:"Isocrónico",pure:"Tono puro",lr:"Hemisferios ⇄"};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch{return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}};
@@ -648,7 +648,22 @@ function effMode(s){if(s.mode!=="pure"&&!s.b)return "pure";return (s.mode==="bin
 function makeVoice(s){
   const t=ctx.currentTime,out=ctx.createGain(),tone=ctx.createGain();out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(1,t+3);out.connect(master);tone.gain.value=s.tv??1;tone.connect(out);
   const nodes=[out],mode=effMode(s);
-  if(mode==="binaural"){const L=ctx.createOscillator(),R=ctx.createOscillator(),m=ctx.createChannelMerger(2);L.frequency.value=s.f;R.frequency.value=s.f+s.b;L.connect(m,0,0);R.connect(m,0,1);m.connect(tone);L.start();R.start();nodes.push(L,R,m)}
+  if(mode==="lr"){
+    /* alterna el sonido entre el oído derecho y el izquierdo, para hemisferios */
+    const L=ctx.createOscillator(),R=ctx.createOscillator(),gL=ctx.createGain(),gR=ctx.createGain(),
+          m=ctx.createChannelMerger(2),lfo=ctx.createOscillator(),aL=ctx.createGain(),aR=ctx.createGain();
+    L.frequency.value=s.f;R.frequency.value=s.f+(s.b||0);
+    gL.gain.value=.5;gR.gain.value=.5;
+    lfo.type="sine";lfo.frequency.value=s.lr||.2;
+    const d=(s.dir===-1?-1:1)*.48;
+    aL.gain.value=d;aR.gain.value=-d;
+    lfo.connect(aL);aL.connect(gL.gain);
+    lfo.connect(aR);aR.connect(gR.gain);
+    L.connect(gL);R.connect(gR);
+    gL.connect(m,0,0);gR.connect(m,0,1);m.connect(tone);
+    L.start();R.start();lfo.start();
+    nodes.push(L,R,gL,gR,m,lfo,aL,aR)}
+  else if(mode==="binaural"){const L=ctx.createOscillator(),R=ctx.createOscillator(),m=ctx.createChannelMerger(2);L.frequency.value=s.f;R.frequency.value=s.f+s.b;L.connect(m,0,0);R.connect(m,0,1);m.connect(tone);L.start();R.start();nodes.push(L,R,m)}
   else if(mode==="iso"){const o=ctx.createOscillator(),g=ctx.createGain(),lfo=ctx.createOscillator(),lg=ctx.createGain();o.frequency.value=s.f;g.gain.value=.5;lfo.frequency.value=s.b;lg.gain.value=.5;lfo.connect(lg);lg.connect(g.gain);o.connect(g);g.connect(tone);o.start();lfo.start();nodes.push(o,g,lfo,lg)}
   else{const o=ctx.createOscillator();o.frequency.value=s.f;o.connect(tone);o.start();nodes.push(o)}
   let breath=null;
