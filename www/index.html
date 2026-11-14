@@ -295,17 +295,7 @@ header.top{background:var(--headbg);margin:calc(-14px - env(safe-area-inset-top,
   <section class="panel" data-view="comida" hidden>
     <h2>Electro alimentación</h2>
     <p class="muted">Cada alimento según la medicina tradicional china (naturaleza, órgano y emoción) y según la nutrición (nutrientes y qué apoyan). Toca un alimento para ver el detalle.</p>
-    <div class="ref">
-      <b>Referencia popular de frecuencias (no verificada)</b>
-      <table>
-        <tr><td>Cuerpo sano</td><td>62–78 MHz</td></tr>
-        <tr><td>Umbral de enfermedad que se menciona</td><td>&lt; 58–62 MHz</td></tr>
-        <tr><td>Frutas y verduras frescas</td><td>20–27 MHz</td></tr>
-        <tr><td>Alimentos enlatados o procesados</td><td>0 MHz</td></tr>
-        <tr><td>Aceite esencial de rosa</td><td>320 MHz</td></tr>
-      </table>
-      <p class="muted">Origen: mediciones atribuidas a Bruce Tainio con su aparato BT3 (Tainio Technology, década de 1990). Nunca se publicaron en una revista científica ni otro laboratorio las ha reproducido, y no existe una lista por alimento que coincida entre fuentes. Úsala como referencia de la tradición, no como dato medido. La idea útil que deja es real: más alimento fresco y menos ultraprocesado.</p>
-    </div>
+    
     <div class="form" style="margin-top:12px">
       <label class="f full" for="foodQ">Buscar alimento, órgano o emoción<input id="foodQ" type="search" placeholder="Ej. hígado, tristeza, aguacate"></label>
     </div>
@@ -432,48 +422,6 @@ const H=(min,label,text,br,ph,f,mu=null,tv=.5)=>({f,b:0,mode:T,dur:min*60,label,
 const M=(min,label,mu,f=432,b=0,mode=T,tv=.18)=>({f,b,mode:b?mode:T,dur:min*60,label,mu,tv});
 const MAJ=[1,9/8,5/4,3/2,5/3],MIN=[1,6/5,4/3,3/2,9/5];
 const VOC=[["Raíz","UUU",128],["Bajo vientre","OOO",144],["Plexo solar","AAA",162],["Corazón","AH-JAA",171.2],["Garganta","EEE",192],["Entrecejo","III",216],["Coronilla","MMM",242.5]];
-/* Mente de cura: acompaña el tratamiento médico de cada condición con calma, visualización y afirmación. No sustituye la indicación médica. */
-const CURA_DATA=[
- // [id, nombre, emoción a calmar, frecuencia de enfoque, tono planetario, visualización, afirmación]
- ["diabetes","Diabetes","el cansancio de cuidarte todos los días",528,183.58,"tu cuerpo usando bien la energía de cada comida, y tu medicamento ayudándole","Cada decisión que tomo hoy cuida mi cuerpo. Sigo mi tratamiento con constancia y cariño."],
- ["hipertension","Presión alta","la prisa y la tensión acumulada",639,136.1,"tus vasos sanguíneos relajados y tu corazón latiendo tranquilo","Mi corazón late en calma. Tomo mi tratamiento y elijo la paz."],
- ["cancer","Cáncer (en tratamiento)","el miedo y la incertidumbre",528,126.22,"tu tratamiento como una luz precisa que llega a donde tiene que llegar, y tu cuerpo recibiéndolo con fuerza","No estoy sola en esto. Mi equipo médico, mi tratamiento y mi fuerza interior trabajan juntos."],
- ["quimio","Días de quimio o radioterapia","los nervios del día de tratamiento",396,136.1,"cada sesión como un paso más hacia tu meta, y tu cuerpo descansando para recuperarse","Recibo mi tratamiento con confianza. Mi cuerpo sabe descansar y recuperarse."],
- ["artritis","Artritis","la frustración del dolor y la rigidez",174,147.85,"tus articulaciones rodeadas de calor suave y movimiento fácil","Me muevo con amor por mi cuerpo. Cuido mis articulaciones y sigo mi tratamiento."],
- ["fibromialgia","Fibromialgia","el agotamiento y la sensibilidad",174,210.42,"tu cuerpo envuelto en una manta tibia que suelta la tensión músculo por músculo","Me trato con paciencia. Mi cuerpo merece descanso y cuidado."],
- ["migrana","Migraña","la tensión en la cabeza y el cuello",432,194.18,"un aire fresco recorriendo tu frente, tus sienes y tu nuca","Suelto la tensión. Escucho las señales de mi cuerpo y me cuido."],
- ["asma","Asma","la angustia por respirar",639,141.27,"tus pulmones abriéndose con suavidad y el aire entrando fácil","Respiro con calma. Tengo mi tratamiento a la mano y confío en mi respiración."],
- ["gastritis","Gastritis y colitis","la preocupación que se guarda en el estómago",528,210.42,"tu estómago tranquilo y protegido, como agua quieta","Digiero la vida con calma. Como con atención y sigo mi tratamiento."],
- ["colon","Colon irritable","el estrés que se siente en el abdomen",417,183.58,"tu abdomen suave, relajado y en orden","Mi abdomen se relaja. Suelto lo que no necesito con tranquilidad."],
- ["tiroides","Tiroides","la sensación de ir más lento o más rápido de lo que quisieras",741,141.27,"tu garganta y tu tiroides en equilibrio, trabajando a su ritmo","Encuentro mi propio ritmo. Tomo mi tratamiento y me escucho."],
- ["ansiedad-dx","Trastorno de ansiedad","la mente acelerada",396,136.1,"tus pensamientos como nubes que pasan sin quedarse","Estoy a salvo en este momento. Sigo mi terapia y mi tratamiento paso a paso."],
- ["depresion","Depresión","el peso y la falta de ganas",528,126.22,"una luz pequeña en tu pecho que se enciende un poco más con cada respiración","Doy un paso pequeño hoy. Pedir ayuda y seguir mi tratamiento es valentía."],
- ["insomnio-dx","Insomnio","la preocupación de no poder dormir",174,210.42,"tu cama como un lugar seguro y tu cuerpo hundiéndose en el descanso","Mi cuerpo sabe dormir. Suelto el día y me entrego al descanso."],
- ["dolor-cronico","Dolor crónico","el cansancio de convivir con el dolor",174,147.85,"el dolor como una ola que sube y baja mientras tu respiración se queda tranquila","Soy más que mi dolor. Me acompaño con paciencia y sigo mi tratamiento."],
- ["renal","Enfermedad renal","el miedo y el cansancio",417,221.23,"tus riñones limpiando con calma, y tu tratamiento sosteniéndolos","Cuido mi cuerpo con constancia. Confío en mi tratamiento y en mi equipo médico."],
- ["higado-graso","Hígado graso","la culpa por los hábitos de antes",528,183.58,"tu hígado limpio y ligero, recibiendo cada cambio bueno que haces","Cada día elijo mejor. Mi hígado agradece mis cambios."],
- ["corazon-enf","Enfermedad del corazón","el miedo por tu corazón",639,136.1,"tu corazón latiendo fuerte y parejo, rodeado de calma","Mi corazón está acompañado. Sigo mi tratamiento y vivo con calma."],
- ["pre-cirugia","Antes de una cirugía","los nervios antes de la operación",396,194.18,"a tu equipo médico trabajando con precisión y tu cuerpo respondiendo bien","Me pongo en buenas manos. Confío en mi equipo médico y en mi cuerpo."],
- ["post-cirugia","Recuperación de cirugía","la impaciencia por recuperarte",528,126.22,"tu herida cerrando paso a paso y tu energía volviendo","Mi cuerpo se recupera a su tiempo. Sigo las indicaciones de mi médico."],
- ["menopausia","Menopausia","los cambios de ánimo y calor",417,210.42,"una brisa fresca recorriendo tu cuerpo y tus emociones en calma","Abrazo esta nueva etapa. Mi cuerpo cambia y yo me cuido."],
- ["fertilidad","Tratamiento de fertilidad","la ansiedad de la espera",417,210.42,"tu vientre cálido y tranquilo, y tu tratamiento acompañado de calma","Vivo la espera con calma. Confío en el proceso y en mi equipo médico."],
- ["piel","Psoriasis y dermatitis","la incomodidad y la vergüenza",528,221.23,"tu piel fresca y en calma, protegida por tu tratamiento","Me acepto como soy hoy. Cuido mi piel con paciencia."],
- ["autoinmune","Lupus y enfermedades autoinmunes","la confusión y el cansancio",528,126.22,"tus defensas en paz y en equilibrio, trabajando a tu favor","Mi cuerpo encuentra su equilibrio. Sigo mi tratamiento con confianza."],
- ["infecciones","Infecciones y parásitos","el malestar y el asco",741,144.72,"tu medicamento haciendo su trabajo y tu intestino recuperándose","Tomo mi tratamiento completo, hasta el último día. Mi cuerpo se fortalece."],
- ["gripe","Recuperación de gripe o covid","el cansancio que deja la enfermedad",639,141.27,"tus pulmones despejados y tu energía regresando poco a poco","Descanso para recuperarme. Mi cuerpo vuelve a su fuerza."],
- ["alergias","Alergias","la incomodidad y la irritación",741,141.27,"tu nariz y tus ojos en calma, tu cuerpo tranquilo ante lo que lo rodea","Mi cuerpo se calma. Sigo mi tratamiento y respiro tranquila."],
- ["peso","Cuidar tu peso","la presión y la exigencia contigo misma",528,183.58,"a ti misma moviéndote con energía y comiendo con gusto y atención","Me cuido por amor, no por castigo. Cada paso cuenta."],
- ["fumar","Dejar de fumar","la ansiedad por fumar",639,141.27,"tus pulmones limpios y tu respiración profunda y libre","Cada respiración limpia es un regalo para mí. Hoy elijo no fumar."],
- ["adicciones","Recuperación de adicciones","el deseo y la culpa",396,194.18,"a ti misma un año adelante, firme y en paz","Hoy es un día a la vez. Pido ayuda y sigo en mi camino de recuperación."],
- ["cuidadores","Para quien cuida a un enfermo","el cansancio y la tristeza de cuidar",639,136.1,"a ti misma descansando, sostenida como tú sostienes a otros","También merezco cuidado. Descanso para seguir acompañando."],
- ["memoria","Memoria y demencia (acompañante)","la angustia de ver cambios en quien quieres",852,194.18,"momentos de conexión y ternura con tu ser querido","Acompaño con amor el momento presente."],
-];
-const CURA=CURA_DATA.map(([id,n,emo,f,pl,vis,af])=>({id:"cura-"+id,cat:"Mente de cura",name:n,desc:"Acompaña tu tratamiento con calma y mente positiva. No sustituye la indicación médica."+(id==="depresion"||id==="adicciones"?" Si piensas en hacerte daño, busca ayuda de inmediato con un profesional, una línea de crisis o emergencias.":""),intent:af,steps:[
-  G(3,"Llegar","Ponte cómoda y respira lento. Estás haciendo algo bueno por ti, junto con tu tratamiento.",[4,0,6,0],256,10),
-  G(5,"Soltar","Reconoce "+emo+". Al exhalar, deja que se afloje un poco. No tienes que resolverlo ahora.",[4,0,8,0],f,6),
-  G(6,"Visualizar","Imagina "+vis+".",null,pl,5),
-  G(4,"Mente de cura","Repite por dentro: “"+af+"”",null,528,7.83),
-  G(2,"Regresar","Agradece a tu cuerpo, a tu tratamiento y a quienes te acompañan. Abre los ojos.",null,256,10)]}));
 const HUM=[
  P("hum-abeja","Tarareo","Respiración de la abeja","Exhala tarareando “mmm” para calmar la mente",[
   H(1,"Preparar","Siéntate cómoda. Escucha el tono: es la nota en la que vas a tararear.",null,null,196),
@@ -547,7 +495,6 @@ const GUIDED=[
 const PROGRAMS=[
  ...GUIDED,
  ...HUM,
- ...CURA,
  /* Solfeggio */
  ...[[174,"Alivio y anclaje"],[285,"Restaurar el bienestar"],[396,"Soltar miedo y culpa"],[417,"Facilitar el cambio"],[528,"Transformación y amor"],[639,"Relaciones y armonía"],[741,"Expresión y limpieza"],[852,"Intuición"],[963,"Conexión espiritual"]]
    .map(([f,d])=>P("sol"+f,"Solfeggio",f+" Hz",d,[[f,0,T,10,d]])),
@@ -629,7 +576,7 @@ const PROGRAMS=[
  ...[["tierra-dia","Tierra (día)",194.18,"Arraigo y vitalidad"],["sol","Sol",126.22,"Centro y confianza"],["luna","Luna",210.42,"Emociones y ciclos"],["mercurio","Mercurio",141.27,"Comunicación"],["venus","Venus",221.23,"Amor y belleza"],["marte","Marte",144.72,"Acción y fuerza"],["jupiter","Júpiter",183.58,"Expansión y abundancia"],["saturno","Saturno",147.85,"Estructura y disciplina"],["urano","Urano",207.36,"Cambio e innovación"],["neptuno","Neptuno",211.44,"Sueños e intuición"],["pluton","Plutón",140.25,"Transformación profunda"]]
    .map(([id,n,f,d])=>P("pl-"+id,"Planetarias",n+" · "+f+" Hz",d,[[f,0,T,10,n]])),
 ];
-const CATS=["Todos","Favoritos","Guiadas","Tarareo","Música","Mente","Ondas","Emociones","Sueño","Energía","Cuerpo","Acompañamiento","Mente de cura","Espiritual","Chakras","Solfeggio","Planetarias"];
+const CATS=["Todos","Favoritos","Guiadas","Tarareo","Música","Mente","Ondas","Emociones","Sueño","Energía","Cuerpo","Acompañamiento","Espiritual","Chakras","Solfeggio","Planetarias"];
 const MODE_NAME={binaural:"Binaural",iso:"Isocrónico",pure:"Tono puro"};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -1004,5 +951,6 @@ renderCats();renderMember();renderSeq();renderMy();renderRx();renderHistory();
 showTab(store.get("lf-tab","programas"));
 load(PROGRAMS.find(p=>p.id==="sol528"));
 </script>
+<script src="extras.js"></script>
 </body>
 </html>
