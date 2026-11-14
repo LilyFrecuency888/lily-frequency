@@ -99,16 +99,21 @@ ready(function(){
       if(photoData)store.set("lf-photo",photoData);
     }catch(x){err.textContent="No pude guardar. Revisa el espacio del celular.";return}
 
-    try{if(typeof renderProfile==="function")renderProfile()}catch(x){}
-    try{if(typeof photoSet==="function")photoSet()}catch(x){}
-    try{if(window.LilyP&&window.LilyP.raw){var r=window.LilyP.raw("lf-perfiles",null)}}catch(x){}
-    try{window.dispatchEvent(new Event("lf-perfil-listo"))}catch(x){}
+    /* el nombre tambien va en la lista de perfiles, para la tira de arriba */
+    try{
+      var LP=window.LilyP;
+      if(LP){
+        var lst=JSON.parse(LP.raw("lf-profiles")||"null")||[];
+        var act=LP.active();
+        var hit=false;
+        for(var i=0;i<lst.length;i++){if(lst[i].id===act){lst[i].name=n;hit=true}}
+        if(!hit)lst.push({id:act||"p1",name:n,tipo:"persona"});
+        LP.set("lf-profiles",JSON.stringify(lst));
+      }
+    }catch(x){}
 
     ov.style.transition="opacity .45s"; ov.style.opacity="0";
-    setTimeout(function(){
-      ov.remove(); document.documentElement.style.overflow="";
-      try{if(typeof toast==="function")toast("Bienvenida, "+n+" ✿")}catch(x){}
-    },460);
+    setTimeout(function(){location.reload()},470);
   };
 
   setTimeout(function(){try{nameI.focus()}catch(x){}},420);
