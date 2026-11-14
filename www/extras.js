@@ -64,7 +64,7 @@ bar.innerHTML=`
 const ctr=document.querySelector(".controls");ctr&&ctr.parentNode.insertBefore(bar,ctr.nextSibling);
 function syncToggles(){[["voice",opt("voice",true)],["vib",opt("vib",true)],["geo",opt("geo",true)],["sleep",!!sleepT],["amb",ambOn()]].forEach(([k,v])=>{const b=q(bar,`[data-x=${k}]`);b&&b.classList.toggle("on",!!v)})}
 bar.onclick=e=>{const b=e.target.closest("[data-x]");if(!b)return;const k=b.dataset.x;
-  if(k==="voice"){setOpt("voice",!opt("voice",true));toast(opt("voice",true)?"Voz guiada activada 🗣":"Voz guiada apagada");if(!opt("voice",true))stopSpeak()}
+  if(k==="voice"){openVoz()}
   else if(k==="vib"){setOpt("vib",!opt("vib",true));toast(opt("vib",true)?"Vibración al respirar activada":"Vibración apagada");if(opt("vib",true))buzz(40)}
   else if(k==="geo"){setOpt("geo",!opt("geo",true));toast(opt("geo",true)?"Geometría sagrada activada ✡":"Geometría sagrada apagada")}
   else ({imm:openImm,amb:openAmb,sleep:openSleep,pulse:openPulse,diary:openDiary,remind:openRemind})[k]();
@@ -178,10 +178,82 @@ function setSleep(min){clearTimeout(sleepT);sleepEnd=Date.now()+min*60000;
   sleepT=setTimeout(check,1000);syncToggles()}
 
 /* ---------- 6. voz guiada ---------- */
-function stopSpeak(){try{CAP.TextToSpeech&&CAP.TextToSpeech.stop()}catch{}try{speechSynthesis&&speechSynthesis.cancel()}catch{}}
-function speak(text){if(!opt("voice",true)||!text)return;const clean=text.replace(/[“”"«»]/g,"");
-  if(CAP.TextToSpeech&&isNative){CAP.TextToSpeech.stop().catch(()=>{}).finally(()=>CAP.TextToSpeech.speak({text:clean,lang:"es-MX",rate:.85,pitch:1,volume:1,category:"playback"}).catch(()=>{}));return}
-  try{const u=new SpeechSynthesisUtterance(clean);u.lang="es-MX";u.rate=.85;const v=speechSynthesis.getVoices().find(v=>/^es/i.test(v.lang));if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u)}catch{}}
+var VOCES=[
+ {id:"relax", n:"Relajante",              rate:.70, pitch:.95},
+ {id:"mujer", n:"Mujer suave y pausada",  rate:.62, pitch:1.04},
+ {id:"hombre",n:"Hombre suave y pausado", rate:.64, pitch:.78},
+ {id:"nina",  n:"Niña alegre",            rate:.92, pitch:1.55},
+ {id:"andro", n:"Meditativa andrógina",   rate:.56, pitch:.88}
+];
+var VOICES=[];
+function loadVoices(){
+  try{
+    if(CAP.TextToSpeech&&isNative){
+      CAP.TextToSpeech.getSupportedVoices().then(function(r){VOICES=(r&&r.voices)||[]}).catch(function(){VOICES=[]});
+    }else if(window.speechSynthesis){
+      VOICES=speechSynthesis.getVoices()||[];
+      speechSynthesis.onvoiceschanged=function(){VOICES=speechSynthesis.getVoices()||[]};
+    }
+  }catch(e){VOICES=[]}
+}
+loadVoices();setTimeout(loadVoices,1500);
+function vocesEs(){return VOICES.filter(function(v){return /^es/i.test(v.lang||"")})}
+function vozSel(){var id=opt("vozId","relax");return VOCES.filter(function(v){return v.id===id})[0]||VOCES[0]}
+function suave(t){return String(t).replace(/[“”"«»]/g,"").replace(/!+/g,".").replace(/\s+/g," ").trim()}
+function stopSpeak(){try{CAP.TextToSpeech&&CAP.TextToSpeech.stop()}catch(e){}try{speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
+function hablar(text,forzar){
+  if(!forzar&&!opt("voice",true))return;
+  var clean=suave(text); if(!clean)return;
+  var V=vozSel(), nom=opt("vozName","");
+  if(CAP.TextToSpeech&&isNative){
+    var o={text:clean,lang:"es-MX",rate:V.rate,pitch:V.pitch,volume:1,category:"playback"};
+    if(nom){for(var i=0;i<VOICES.length;i++){if((VOICES[i].name||"")===nom){o.voice=i;o.lang=VOICES[i].lang||o.lang;break}}}
+    CAP.TextToSpeech.stop().catch(function(){}).then(function(){return CAP.TextToSpeech.speak(o)}).catch(function(){});
+    return;
+  }
+  try{
+    var u=new SpeechSynthesisUtterance(clean);
+    u.lang="es-MX"; u.rate=V.rate; u.pitch=V.pitch;
+    var lista=vocesEs(), pick=null;
+    if(nom)pick=lista.filter(function(x){return x.name===nom})[0];
+    if(!pick)pick=lista[0];
+    if(pick)u.voice=pick;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+function speak(text){return hablar(text,false)}
+function openVoz(){
+  var V=vozSel(), on=opt("voice",true), nom=opt("vozName","");
+  var estilos=VOCES.map(function(x){
+    return '<button class="btn'+(x.id===V.id?" pri":"")+'" type="button" data-vz="'+x.id+'">'+x.n+'</button>'}).join("");
+  var lista=vocesEs();
+  var sel=lista.length
+    ? '<label class="f full" for="vzDev">Voz instalada en tu teléfono<select id="vzDev">'
+      +'<option value="">La que use el sistema</option>'
+      +lista.map(function(x){var nm=x.name||"";return '<option value="'+esc(nm)+'"'+(nm===nom?" selected":"")+'>'+esc(nm+(x.lang?" · "+x.lang:""))+'</option>'}).join("")
+      +'</select></label>'
+    : '<p class="muted">Tu teléfono todavía no reporta voces en español. Instala "Voces de Google" desde Play Store para tener más opciones.</p>';
+  var o=sheet("xVoz","Voz guiada",
+    '<p class="muted">Elige cómo quieres que te acompañen las respiraciones. Prueba cada una y quédate con la que te relaje.</p>'
+    +'<div class="row" style="margin:12px 0">'+estilos+'</div>'
+    +'<div class="form">'+sel+'</div>'
+    +'<div class="row" style="margin-top:12px"><button class="btn pri" type="button" id="vzTest">▸ Probar</button>'
+    +'<button class="btn" type="button" id="vzOn">'+(on?"Apagar la voz":"Encender la voz")+'</button></div>'
+    +'<p class="muted" style="margin-top:12px;font-size:.84rem">Las voces vienen de tu teléfono, no de la app. Si ninguna te gusta, instala "Voces de Google" y aquí aparecerán más.</p>');
+  function pinta(){
+    var cur=vozSel();
+    o.querySelectorAll("[data-vz]").forEach(function(b){b.classList.toggle("pri",b.dataset.vz===cur.id)});
+    q(o,"#vzOn").textContent=opt("voice",true)?"Apagar la voz":"Encender la voz";
+  }
+  o.querySelectorAll("[data-vz]").forEach(function(b){
+    b.onclick=function(){setOpt("vozId",b.dataset.vz);pinta();hablar("Inhala despacio. Y suelta. Estás a salvo.",true)}});
+  var dev=q(o,"#vzDev");
+  if(dev)dev.onchange=function(){setOpt("vozName",dev.value);hablar("Inhala despacio. Y suelta. Estás a salvo.",true)};
+  q(o,"#vzTest").onclick=function(){hablar("Inhala despacio. Sostén. Y suelta muy lento. Todo tu cuerpo se relaja.",true)};
+  q(o,"#vzOn").onclick=function(){setOpt("voice",!opt("voice",true));if(!opt("voice",true))stopSpeak();pinta();syncToggles();
+    toast(opt("voice",true)?"Voz guiada activada 🗣":"Voz guiada apagada")};
+  o.hidden=false;
+}
 const _startStep=window.startStep;
 if(typeof _startStep==="function")window.startStep=function(i){_startStep(i);const s=cur&&cur.steps[i];if(s&&s.g)setTimeout(()=>{if(playing&&cur&&cur.steps[idx]===s)speak(s.g)},1400)};
 const _stop=window.stop;if(typeof _stop==="function")window.stop=function(silent){stopSpeak();return _stop(silent)};
