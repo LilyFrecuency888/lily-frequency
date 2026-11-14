@@ -205,7 +205,7 @@ var _play=window.play;
 if(typeof _play==="function"){
   window.play=function(){
     var yaSonando=false;
-    try{yaSonando=!!(window.playing||window.paused)}catch(e){}
+    try{yaSonando=!!(playing||paused)}catch(e){}
     if(opt()!=="on"||yaSonando||corriendo)return _play.apply(window,arguments);
     var args=arguments;
     correr(function(){try{_play.apply(window,args)}catch(e){}});
