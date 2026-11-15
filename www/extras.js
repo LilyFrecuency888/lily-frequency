@@ -185,14 +185,27 @@ var VOCES=[
  {id:"nina",  n:"Niña alegre",            rate:.92, pitch:1.55, pref:/x-(eea|eef)|female/i},
  {id:"andro", n:"Meditativa andrógina",   rate:.56, pitch:.88}
 ];
-/* elige en el teléfono la voz que mejor encaja con el estilo pedido */
+/* Elige en el teléfono la voz que mejor encaja con el estilo pedido.
+   Si no hay coincidencia, reparte voces distintas entre los cinco estilos,
+   para que no suene siempre la misma persona con otro tono. */
 function prefiere(V){
-  if(!V.pref)return null;
   var L=vocesEs();
-  for(var i=0;i<L.length;i++){var n=(L[i].name||"")+" "+(L[i].voiceURI||"");
-    if(V.pref.test(n))return L[i].name||null}
-  return null;
+  if(!L.length)return null;
+  if(V.pref){
+    for(var i=0;i<L.length;i++){var n=(L[i].name||"")+" "+(L[i].voiceURI||"");
+      if(V.pref.test(n))return L[i].name||null}
+  }
+  return repartir(V);
 }
+function repartir(V){
+  var L=vocesEs();
+  if(L.length<2)return null;
+  var k=0;
+  for(var i=0;i<VOCES.length;i++)if(VOCES[i].id===V.id){k=i;break}
+  return L[k%L.length].name||null;
+}
+/* cuántas voces distintas tiene realmente este teléfono */
+function cuantasVoces(){return vocesEs().length}
 var VOICES=[];
 function loadVoices(){
   try{
@@ -241,14 +254,21 @@ function openVoz(){
       +'<option value="">La que use el sistema</option>'
       +lista.map(function(x){var nm=x.name||"";return '<option value="'+esc(nm)+'"'+(nm===nom?" selected":"")+'>'+esc(nm+(x.lang?" · "+x.lang:""))+'</option>'}).join("")
       +'</select></label>'
-    : '<p class="muted">Tu teléfono todavía no reporta voces en español. Instala "Voces de Google" desde Play Store para tener más opciones.</p>';
+    : '<p class="muted">Tu teléfono todavía no reporta voces en español.</p>';
+  var n=cuantasVoces();
+  var aviso = n<=1
+    ? '<p class="muted" style="margin-top:12px;font-size:.84rem;border-top:1px solid var(--line);padding-top:10px">'+
+      '<b style="color:var(--oro)">Tu teléfono solo tiene '+(n===1?"una voz":"ninguna voz")+' en español</b>, así que los cinco estilos suenan a la misma persona con distinto tono. '+
+      'Para que suenen diferentes de verdad: Ajustes del teléfono → Accesibilidad → Texto a voz → Google → Instalar datos de voz → Español, y descarga también España, México y Estados Unidos. '+
+      'Luego vuelve aquí y aparecerán todas.</p>'
+    : '<p class="muted" style="margin-top:12px;font-size:.84rem">Tu teléfono tiene '+n+' voces en español y cada estilo usa una distinta. Si quieres otra combinación, elígela abajo.</p>';
   var o=sheet("xVoz","Voz guiada",
     '<p class="muted">Elige cómo quieres que te acompañen las respiraciones. Prueba cada una y quédate con la que te relaje.</p>'
     +'<div class="row" style="margin:12px 0">'+estilos+'</div>'
     +'<div class="form">'+sel+'</div>'
     +'<div class="row" style="margin-top:12px"><button class="btn pri" type="button" id="vzTest">▸ Probar</button>'
     +'<button class="btn" type="button" id="vzOn">'+(on?"Apagar la voz":"Encender la voz")+'</button></div>'
-    +'<p class="muted" style="margin-top:12px;font-size:.84rem">Las voces vienen de tu teléfono, no de la app. Si ninguna te gusta, instala "Voces de Google" y aquí aparecerán más.</p>');
+    +aviso);
   function pinta(){
     var cur=vozSel();
     o.querySelectorAll("[data-vz]").forEach(function(b){b.classList.toggle("pri",b.dataset.vz===cur.id)});
