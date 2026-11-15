@@ -78,6 +78,11 @@ for(var j=0;j<OUT.length;j++)if(!hay[OUT[j].id])PROGRAMS.push(OUT[j]);
 for(var k=0;k<PROGRAMS.length;k++)if(PROGRAMS[k].cat==="Planetarias")PROGRAMS[k].cat="Planetas";
 var ip=CATS.indexOf("Planetarias"); if(ip>=0)CATS[ip]="Planetas";
 
+/* "ADN" en el nombre de una categoría es afirmación genética para Play.
+   El manual conserva su nombre; aquí la sección se llama Punto Cero. */
+for(var q=0;q<PROGRAMS.length;q++)if(PROGRAMS[q].cat==="ADN Punto Cero")PROGRAMS[q].cat="Punto Cero";
+var ia=CATS.indexOf("ADN Punto Cero"); if(ia>=0)CATS[ia]="Punto Cero";
+
 ["Conexión espiritual","Abundancia","Resiliencia energética","Conciencia y linaje","Bioenergética"].forEach(function(c){
   if(CATS.indexOf(c)<0)CATS.push(c)});
 })();
