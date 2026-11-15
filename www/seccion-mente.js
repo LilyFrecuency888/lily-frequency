@@ -26,7 +26,7 @@ mk("Equilibrio energético",[
 mk("Aprendizaje y memoria",[
 ["apr-sist","Aprendizaje · de fondo","Sesión larga de 30 min para días de estudio. Sube de la calma al foco y baja al final","432,10,8,Calma alerta|432,13,10,Atención sostenida|432,16,8,Foco|432,10,4,Cerrar"],
 ["apr-agudo","Aprendizaje · inmediato","12 min antes de ponerte a estudiar. Entra rápido al estado de aprender","432,10,4,Entrar|432,14,8,Aprender"],
-["apr-memoria","Memoria","Alfa-theta para fijar lo estudiado. Úsala justo después de repasar, no antes","432,10,6,Asentar|432,7,8,Fijar|432,5,4,Consolidar"],
+["apr-memoria","Memoria","Gamma 40 Hz para fijar lo estudiado. Úsala justo después de repasar, no antes","432,10,4,Asentar|432,40,8,Gamma|432,7,6,Consolidar"],
 ["apr-conc-sist","Concentración · de fondo","Bloque de 40 min de trabajo profundo. Ponla y no toques el teléfono","432,10,5,Entrar|432,13,12,SMR|432,16,12,Beta|432,18,8,Foco alto|432,10,3,Salir"],
 ["apr-conc-agudo","Concentración · inmediato","10 min para recuperar la atención cuando se te dispersó","432,13,4,Recoger|432,18,6,Enfocar"],
 ["apr-examen-sist","Examen · de fondo","Para los días previos. Calma la anticipación y deja la mente disponible","396,10,6,Soltar el nervio|432,8,8,Calma|432,14,10,Repasar|528,10,4,Confianza"],
@@ -36,16 +36,14 @@ mk("Aprendizaje y memoria",[
 ]);
 
 /* ============ 3 · CUERPO Y RENDIMIENTO ============ */
-mk("Cuerpo y rendimiento",[
+mk("Cuerpo y vitalidad",[
 ["cpo-musculo","Músculo","Antes o después de entrenar. Acompaña el trabajo muscular con pulso de cuerpo","128,0,5,Tono de cuerpo|285,8,8,Recuperar|174,6,5,Soltar"],
-["cpo-circulacion","Circulación","Pulso rítmico y constante. Buena para sesiones de camilla o para mover el cuerpo despacio","136.1,8,8,Ritmo|194.18,10,8,Movimiento"],
 ["cpo-rendimiento","Rendimiento","Activación para competir o rendir. Beta alto con base de tierra","194.18,14,6,Despertar|432,18,10,Rendir|432,20,5,Pico"],
 ["cpo-fuerza","Fuerza","Raíz y plexo solar. Para antes de levantar peso o de una exigencia física","396,12,6,Raíz|528,16,8,Plexo"],
 ["cpo-aguante","Aguante","Sesión larga y pareja para resistencia. Fondo estable sin picos","194.18,12,15,Constancia|432,14,15,Sostener"],
 ["cpo-regeneracion","Regeneración","Después del esfuerzo. Baja el cuerpo a theta para que descanse de verdad","285,8,8,Reparar|174,6,10,Profundo|136.1,4,7,Reposo"],
 ["cpo-relax-profunda","Relajación profunda","Veinticinco minutos para soltar el cuerpo entero, de la mandíbula a los pies","432,10,5,Llegar|432,7,10,Soltar|174,5,10,Profundo"],
 ["cpo-movimiento","Movimiento y constancia","Para los días en que no te quieres mover. No te empuja: te acompaña a empezar","528,12,6,Ganas|432,16,8,Arrancar"],
-["cpo-imagen","Imagen corporal amable","Para la relación con tu cuerpo, no con tu peso. 528 y 639 con afirmaciones de trato amable","528,8,8,Agradecer el cuerpo|639,8,8,Trato amable"],
 ["cpo-manos","Manos y trabajo corporal","Para terapeutas: fondo mientras das masaje o terapia manual. Ponla en parlante","136.1,7.83,20,Fondo de sesión"]
 ]);
 
@@ -68,6 +66,6 @@ mk("Equilibrio mental",[
 var hay={};
 for(var i=0;i<PROGRAMS.length;i++)hay[PROGRAMS[i].id]=1;
 for(var j=0;j<OUT.length;j++)if(!hay[OUT[j].id])PROGRAMS.push(OUT[j]);
-["Equilibrio energético","Aprendizaje y memoria","Cuerpo y rendimiento","Equilibrio mental"].forEach(function(c){
+["Equilibrio energético","Aprendizaje y memoria","Cuerpo y vitalidad","Equilibrio mental"].forEach(function(c){
   if(CATS.indexOf(c)<0)CATS.push(c)});
 })();
