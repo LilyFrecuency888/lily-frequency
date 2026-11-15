@@ -11,7 +11,7 @@ window.LF_ADN=(window.LF_ADN||[]).concat([
  P("adn09","ADN Punto Cero","Día 9 · Restauración del Código Genético Original","Bloque 9 del decreto · 528 Hz en theta",[
   LLEGAR(),
   D(2,"Decreto 1 de 3","Todo lo que ha sido manipulado, alterado o interferido en mi código genético desde fuera de la conciencia y la verdad, lo destruyo y lo descreo total, completa y permanentemente ahora. ¿Qué tal si mi ADN puede regresar a su estado de perfección sin ninguna resistencia? Todo trauma ancestral, químico, nuclear, biológico o emocional que distorsionó mi herencia energética lo destruyo y lo descreo ahora, en todos los tiempos, dimensiones, espacios, realidades, universos, multiversos, metaversos, vidas pasadas desde mis primeros ancestros hasta los últimos."),
-  D(2,"Decreto 2 de 3",AE+" Borro y elimino total, completa y permanentemente mutaciones genéticas adquiridas o inducidas artificialmente, como vacunas, toxinas, radiación, control mental, ingeniería genética, y todo lo que no mencioné aquí. Fuerte para deshacer secuencias erróneas e integrar los códigos originales de sanación, longevidad, juventud y conciencia divina."),
+  D(2,"Decreto 2 de 3",AE+" Borro y elimino total, completa y permanentemente todo lo que haya alterado mi herencia desde fuera de mi conciencia y de mi consentimiento, y todo lo que no mencioné aquí. Fuerte para deshacer secuencias erróneas e integrar los códigos originales de sanación, longevidad, juventud y conciencia divina."),
   D(2,"Decreto 3 de 3","Elimino y borro total, completa y permanentemente debilidades en el ADN mitocondrial, telómeros, cromosomas y en todas las conexiones neurocuánticas."),
   SELLAR()]),
  P("adn10","ADN Punto Cero","Día 10 · Neutralidad Absoluta","Bloque 10 del decreto · 528 Hz en theta",[
