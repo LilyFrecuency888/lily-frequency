@@ -65,16 +65,18 @@ mk("Blindaje energético",[
 
 /* ============ 12 · AMOR Y RELACIONES ============ */
 mk("Amor y relaciones",[
-["amo-abrir","Abrirse al amor","Para dejar de cerrar la puerta sin darte cuenta. 639 con corazón","639,8,10,Abrir|528,8,8,Merecer"],
-["amo-pareja","Para la pareja","Escúchenla juntos si pueden. Si no, escúchala pensando en el vínculo","639,8,10,Vínculo|528,8,8,Ternura"],
-["amo-reconciliar","Reconciliación","Antes de la conversación difícil. Baja la defensa","396,8,6,Soltar la defensa|639,8,10,Acercarse"],
-["amo-limites","Límites con amor","Decir que no sin romper el vínculo. Plexo y corazón a la vez","528,10,8,Mi lugar|639,9,8,Sin romper"],
-["amo-desapego","Desapego sano","Para el vínculo que te tiene esperando. Soltar sin odiar","396,7,10,Soltar|639,7,8,Desde el cariño"],
-["amo-familia","Vínculo familiar","Para la relación con padres, hijos o hermanos. Incluye lo heredado","396,6,8,Lo heredado|639,8,10,El vínculo de hoy"],
-["amo-perdonar","Perdonar","A otro o a ti. No obliga a nada, solo abre espacio","396,6,8,Lo que pesa|639,7,10,Soltar la deuda"],
-["amo-duelo","Duelo de una relación","Para cuando terminó. No busca animarte: te acompaña","174,5,8,Sostener|285,6,10,Cuidar|639,7,8,Agradecer lo que fue"],
-["amo-amistad","Amistades","Para cuidar a los que eliges. 639 en alfa, ligera","639,10,12,Amistad"],
-["amo-reencuentro","Reencuentro contigo","La relación más larga de tu vida. Antes de cualquier otra","528,9,10,Conmigo|963,7.83,8,En paz"]
+["am-propio","Amor propio","La relación más larga de tu vida. 528 Hz, la base de todas las demás","528,9,10,Conmigo|963,7.83,8,En paz"],
+["am-apertura","Apertura al amor","Para dejar de cerrar la puerta sin darte cuenta","639,8,10,Abrir|528,8,8,Merecer"],
+["am-pareja","Armonía en pareja","Escúchenla juntos si pueden. Si no, pensando en el vínculo","639,8,10,Vínculo|528,8,8,Ternura"],
+["am-comunicacion","Comunicación amorosa","Antes de la conversación difícil. Baja la defensa y abre la garganta","741,8,6,Decir|639,8,10,Desde el cariño"],
+["am-sanar","Sanación de vínculos","Para lo que quedó roto y todavía duele. 639 en theta","639,6,12,Sanar|528,7,8,Reparar"],
+["am-perdon","Perdón","A otro o a ti. No obliga a nada, solo abre espacio","396,6,8,Lo que pesa|639,7,10,Soltar la deuda"],
+["am-soltar","Soltar relaciones pasadas","Para el vínculo que te tiene esperando. Soltar sin odiar","396,7,10,Soltar|639,7,8,Desde el cariño"],
+["am-atraer","Atraer pareja afín","No persigue: se prepara. Abre el corazón y afirma lo que sí quieres","639,8,10,Disponible|528,9,8,Afín a mí"],
+["am-familia","Armonía familiar","Padres, hijos y hermanos. Incluye lo heredado","396,6,8,Lo heredado|639,8,10,El vínculo de hoy"],
+["am-limites","Límites sanos","Decir que no sin romper el vínculo. Plexo y corazón a la vez","528,10,8,Mi lugar|639,9,8,Sin romper"],
+["am-confianza","Confianza en la relación","Para después de una herida o de una duda. Reconstruir despacio","528,9,8,En mí|639,8,10,En nosotros"],
+["am-pasion","Pasión y conexión","Sacro y corazón juntos. Para reencontrar las ganas en la pareja","417,9,8,Sacro|639,9,10,Conexión"]
 ]);
 
 /* ---------- registrar ---------- */
