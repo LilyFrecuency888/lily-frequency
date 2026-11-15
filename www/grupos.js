@@ -10,7 +10,7 @@ var GRUPOS=[
  {n:"Emoción",  i:"♡", c:["Balance emocional","Emociones","Fuerza interior","Amor y relaciones","Subliminales"]},
  {n:"Cuerpo",   i:"✿", c:["Cuerpo y vitalidad","Cuerpo","Belleza total","Bioenergética","Sueño","Energía"]},
  {n:"Energía",  i:"≋", c:["Equilibrio energético","Blindaje energético","Resiliencia energética","Chakras","Planetas","Diapasones","Solfeggio"]},
- {n:"Espíritu", i:"✡", c:["ADN Punto Cero","ADN y conciencia","Conexión espiritual","Espiritual","Abundancia"]},
+ {n:"Espíritu", i:"✡", c:["Punto Cero","Conciencia y linaje","Conexión espiritual","Espiritual","Abundancia"]},
  {n:"Míos",     i:"♪", c:["Tarareo","Música","Acompañamiento"]}
 ];
 
