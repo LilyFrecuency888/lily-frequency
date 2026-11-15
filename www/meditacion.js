@@ -229,6 +229,28 @@ function interruptor(){
   }
   pinta();host.appendChild(d);
 }
+/* ---------- tarjeta al inicio de Hoy ---------- */
+function alInicio(){
+  var host=document.querySelector('[data-view="programas"]');
+  if(!host||document.getElementById("lmInicio"))return;
+  var sg='<svg viewBox="-62 -62 124 124" style="width:56px;height:56px;flex:none"><g fill="none" stroke="currentColor" stroke-width="1.6" opacity=".9"><circle r="28"/>';
+  for(var i=0;i<6;i++){var a=i*Math.PI/3;
+    sg+='<circle cx="'+(28*Math.cos(a)).toFixed(2)+'" cy="'+(28*Math.sin(a)).toFixed(2)+'" r="28"/>'}
+  sg+='</g></svg>';
+  var d=document.createElement("div");
+  d.id="lmInicio";
+  d.style.cssText="display:flex;gap:14px;align-items:center;border:1px solid var(--menta);border-radius:20px;padding:16px;margin-bottom:14px;"+
+    "background:linear-gradient(135deg,rgba(143,240,208,.16),rgba(201,167,255,.10));cursor:pointer;color:var(--lila)";
+  d.innerHTML=sg+'<div style="flex:1;color:var(--fg)">'+
+    '<b style="display:block;font-size:1.02rem;margin-bottom:2px">✦ Meditación de entrada</b>'+
+    '<span class="muted" style="font-size:.84rem;line-height:1.45;display:block">Respiración, intención, esfera dorada y conexión cielo-tierra. Empieza aquí tu sesión.</span></div>'+
+    '<span style="font-size:1.5rem;color:var(--lila)">▸</span>';
+  d.onclick=function(){correr(function(){})};
+  host.insertBefore(d,host.firstChild);
+}
+if(document.readyState!=="loading")setTimeout(alInicio,350);
+else document.addEventListener("DOMContentLoaded",function(){setTimeout(alInicio,350)});
+
 if(document.readyState!=="loading")setTimeout(interruptor,400);
 else document.addEventListener("DOMContentLoaded",function(){setTimeout(interruptor,400)});
 })();
