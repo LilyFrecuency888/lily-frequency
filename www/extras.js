@@ -254,6 +254,27 @@ function openVoz(){
     toast(opt("voice",true)?"Voz guiada activada 🗣":"Voz guiada apagada")};
   o.hidden=false;
 }
+/* acceso a la voz desde Mi perfil, porque en la barra no se encuentra */
+function cajaVoz(){
+  var host=document.querySelector('[data-view="cuenta"]');
+  if(!host||document.getElementById("lvBox"))return;
+  var d=document.createElement("div");
+  d.id="lvBox";
+  d.style.cssText="border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:14px";
+  function pinta(){
+    var V=vozSel(), on=opt("voice",true);
+    d.innerHTML='<h3 style="font-size:1.05rem;margin-bottom:4px">🗣 Voz guiada</h3>'+
+      '<p class="muted">Quien te acompaña en las respiraciones y en las meditaciones. Ahora: <b style="color:var(--fg)">'+esc(V.n)+'</b>'+(on?"":" · apagada")+'</p>'+
+      '<div class="row" style="margin-top:12px"><button class="btn pri" type="button" id="lvGo">Elegir mi voz</button></div>';
+    d.querySelector("#lvGo").onclick=function(){openVoz()};
+  }
+  pinta();
+  host.appendChild(d);
+  d.addEventListener("click",function(){setTimeout(pinta,600)});
+}
+if(document.readyState!=="loading")setTimeout(cajaVoz,350);
+else document.addEventListener("DOMContentLoaded",function(){setTimeout(cajaVoz,350)});
+
 const _startStep=window.startStep;
 if(typeof _startStep==="function")window.startStep=function(i){_startStep(i);const s=cur&&cur.steps[i];if(s&&s.g)setTimeout(()=>{if(playing&&cur&&cur.steps[idx]===s)speak(s.g)},1400)};
 const _stop=window.stop;if(typeof _stop==="function")window.stop=function(silent){stopSpeak();return _stop(silent)};
