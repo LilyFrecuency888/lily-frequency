@@ -43,21 +43,21 @@ mk("Resiliencia energética",[
 ["re-transmutar","Transmutación energética","Para lo denso que ya reconociste. No lo pelea: lo convierte","396,6,10,Reconocer|417,7,8,Mover|528,8,8,Transformar"],
 ["re-escudo","Escudo áurico","El borde de tu campo. Para antes de entrar a un lugar difícil","963,7.83,8,Borde|396,7.83,6,Base|432,7.83,5,Sellar"],
 ["re-claridad","Claridad interior","Cuando sabes que algo no está bien pero no sabes qué","741,7,8,Despejar|852,6,10,Ver"],
-["re-regeneracion","Regeneración celular sutil","285 Hz en theta, lenta y larga. Para después de un período de desgaste","285,6,12,Reparar|174,5,12,Profundo"],
+["re-regeneracion","Regeneración profunda","285 Hz en theta, lenta y larga. Para después de un período de desgaste","285,6,12,Reparar|174,5,12,Profundo"],
 ["re-ancestral","Fuerza ancestral","Lo que tu linaje también te dio: la capacidad de sostener. 396 en theta","396,5,12,Linaje|528,6,10,Recibir la fuerza"],
 ["re-bloqueos","Liberación de bloqueos","396 Hz sostenido sobre lo que lleva tiempo atorado","396,6,15,Liberar|417,7,8,Mover"],
 ["re-coherencia","Coherencia corazón-mente","Que los dos digan lo mismo. Alterna entre 639 y claridad mental","639,7.83,8,Corazón|852,7.83,8,Mente|432,7.83,8,De acuerdo"]
 ]);
 
 /* ============ 20 · ADN Y ELEVACIÓN DE CONCIENCIA ============ */
-mk("ADN y conciencia",[
+mk("Conciencia y linaje",[
 ["dc-elevacion","Elevación de conciencia","963 Hz sostenido. La sesión de ampliar la mirada","963,6,15,Elevar|963,4,10,Sostener"],
 ["dc-despertar","Despertar espiritual","852 Hz con theta. Para los momentos en que algo se está moviendo dentro","852,6,12,Despertar|963,6,10,Abrir"],
-["dc-pineal","Glándula pineal","Atención al centro de la cabeza, entre las cejas y hacia adentro. 852 y 963","852,7,10,El espacio|963,6,10,El centro"],
+["dc-pineal","El centro de la cabeza","Atención entre las cejas y hacia adentro, el punto clásico de la meditación. 852 y 963","852,7,10,El espacio|963,6,10,El centro"],
 ["dc-meditacion","Meditación profunda","Theta 6 Hz limpio, sin voz ni adornos. Para quien ya sabe meditar","432,6,25,Theta"],
 ["dc-expansion","Expansión de conciencia","Gamma 40 Hz en pulsos. Corta e intensa, no para todos los días","432,40,10,Gamma"],
 ["dc-yo-superior","Conexión con el yo superior","963 Hz en theta profundo. Pregunta y escucha, sin forzar respuesta","963,5,15,Preguntar|963,4,10,Escuchar"],
-["dc-transgeneracional","Sanación transgeneracional","396 Hz sobre el linaje. Lo que no era tuyo y lo cargaste igual","396,5,12,Lo heredado|528,6,10,Devolver|639,7,8,Agradecer"],
+["dc-transgeneracional","Paz con el linaje","396 Hz sobre lo heredado. Lo que no era tuyo y lo cargaste igual","396,5,12,Lo heredado|528,6,10,Devolver|639,7,8,Agradecer"],
 ["dc-luz","Luz interior","La más sencilla: una luz en el centro del pecho que crece despacio","528,7,12,Luz|963,7,10,Expandir"],
 ["dc-unidad","Unidad con el todo","Para cerrar un proceso. Sin separación, sin esfuerzo","963,7.83,12,Unidad|136.1,7.83,12,Todo"]
 ]);
@@ -78,6 +78,6 @@ for(var j=0;j<OUT.length;j++)if(!hay[OUT[j].id])PROGRAMS.push(OUT[j]);
 for(var k=0;k<PROGRAMS.length;k++)if(PROGRAMS[k].cat==="Planetarias")PROGRAMS[k].cat="Planetas";
 var ip=CATS.indexOf("Planetarias"); if(ip>=0)CATS[ip]="Planetas";
 
-["Conexión espiritual","Abundancia","Resiliencia energética","ADN y conciencia","Bioenergética"].forEach(function(c){
+["Conexión espiritual","Abundancia","Resiliencia energética","Conciencia y linaje","Bioenergética"].forEach(function(c){
   if(CATS.indexOf(c)<0)CATS.push(c)});
 })();
