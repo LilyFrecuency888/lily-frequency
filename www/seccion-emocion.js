@@ -1,5 +1,5 @@
-/* Lily Frequency · Belleza y presencia, Acompañamiento del dolor,
-   Balance mental, Balance emocional, Blindaje energético, Amor y relaciones */
+/* Lily Frequency · Belleza total, Fuerza interior, Balance emocional,
+   Blindaje energético, Amor y relaciones */
 (function(){
 "use strict";
 if(typeof PROGRAMS==="undefined"||typeof CATS==="undefined")return;
@@ -10,7 +10,7 @@ function mk(cat,arr){arr.forEach(function(a){
     return {f:f,b:b,mode:b>0?"binaural":"pure",dur:+p[2]*60,label:p[3]}})})})}
 
 /* ============ 5 · BELLEZA Y PRESENCIA ============ */
-mk("Belleza y presencia",[
+mk("Belleza total",[
 ["bel-interior","Belleza interior","Lo que se nota antes que la cara: cómo te sientes contigo. 528 y 639","528,8,8,Aprecio|639,8,8,Ternura"],
 ["bel-vitalidad","Vitalidad y frescura","Para cuando te ves cansada en el espejo. Descanso real, que es lo que de verdad se nota","285,8,8,Reparar|432,10,8,Frescura|528,10,6,Brillo"],
 ["bel-ritual-piel","Fondo para tu ritual de piel","Ponla mientras te haces tu rutina de cara. Convierte cinco minutos en un momento tuyo","528,10,6,Cuidado|639,8,6,Suavidad"],
@@ -24,21 +24,8 @@ mk("Belleza y presencia",[
 ["bel-frescura","Frescura y presencia limpia","Ritual de ducha o de cambio de ropa. Para marcar el antes y el después del día","285,9,6,Limpiar|432,10,6,Fresco"]
 ]);
 
-/* ============ 6 · ACOMPAÑAMIENTO DEL DOLOR ============ */
-mk("Acompañamiento del dolor",[
-["dol-local","Acompañamiento local","Para una zona concreta. Pon la mano ahí y respira hacia ese punto. Acompaña, no trata","174,0,6,Tono de alivio|285,6,8,Respirar hacia la zona|136.1,5,6,Quietud"],
-["dol-fondo","Acompañamiento de fondo","Sesión larga para días difíciles. No quita el dolor: te ayuda a sobrellevarlo","174,0,8,Suelo|174,5,12,Theta|285,5,10,Reparar|136.1,4,8,Reposo"],
-["dol-muscular","Dolor muscular","Después de esfuerzo o de un día tenso. Pulso de cuerpo con theta","128,0,6,Tono de cuerpo|174,6,10,Soltar|285,6,8,Recuperar"],
-["dol-articulaciones","Articulaciones rígidas","Para la rigidez de la mañana o del frío. Muévete despacio mientras suena","128,0,5,Cuerpo|174,5,10,Aflojar|285,7,8,Movilidad"],
-["dol-general","Malestar general","Cuando no sabes dónde duele exactamente. Bajar todo el sistema","174,0,5,Piso|285,5,10,Calma|136.1,4,10,Reposo"],
-["dol-noche","Dolor de noche","Para las noches en que el dolor no deja dormir. Delta largo, volumen bajo","174,5,10,Theta|174,3,15,Bajar|174,2,20,Delta"],
-["dol-piel","Piel irritada","Acompaña la molestia de la piel sensible. Frecuencias suaves y frescas","285,7,8,Calma|528,7,8,Reparar"],
-["dol-tension","Tensión de cuello y hombros","La zona donde cae el estrés. Suelta la mandíbula mientras suena","741,8,6,Garganta|174,6,8,Hombros|432,9,6,Soltar"],
-["dol-cabeza","Pesadez de cabeza","Para la presión del día frente a pantallas. Baja el estímulo","852,6,5,Entrecejo|432,8,8,Bajar|136.1,5,6,Quietud"]
-]);
-
 /* ============ 7 · BALANCE MENTAL ============ */
-mk("Balance mental",[
+mk("Fuerza interior",[
 ["bm-fuerza","Fuerza interior · de fondo","Sesión larga para reconstruir cuando te sientes sin recursos","396,8,8,Raíz|528,9,10,Plexo|639,8,8,Corazón|963,7.83,5,Amplitud"],
 ["bm-bienestar","Bienestar emocional","El estado base al que quieres volver. Ponla como mantenimiento","528,9,10,Bienestar|639,9,10,Calidez"],
 ["bm-sentirse-bien","Sentirse bien · de fondo","Para días grises sin motivo. No te obliga a estar alegre, solo abre un poco","432,10,8,Abrir|528,11,8,Ánimo|639,10,6,Suavidad"],
@@ -52,7 +39,6 @@ mk("Balance mental",[
 /* ============ 16 · BALANCE EMOCIONAL ============ */
 mk("Balance emocional",[
 ["be-aceptacion","Aceptación","Para lo que no puedes cambiar. No es resignarse: es dejar de pelear con lo que ya pasó","396,8,8,Soltar la lucha|639,8,8,Aceptar"],
-["be-concentracion","Concentración emocional","Cuando la emoción no te deja pensar. Primero el cuerpo, después la cabeza","174,6,5,Cuerpo|432,10,6,Despejar|432,14,6,Pensar"],
 ["be-desapego","Desapego","Soltar sin cerrar el corazón. Para personas, resultados y expectativas","396,7,8,Soltar|639,8,8,Querer sin aferrar"],
 ["be-serenidad","Serenidad","El punto quieto. Para después de una tormenta emocional","432,9,10,Calma|136.1,7.83,10,Quietud"],
 ["be-equilibrio","Equilibrio emocional","Ni apagada ni desbordada. Mantenimiento para quien siente mucho","432,10,10,Centro|528,9,10,Sostener"],
@@ -95,6 +81,6 @@ mk("Amor y relaciones",[
 var hay={};
 for(var i=0;i<PROGRAMS.length;i++)hay[PROGRAMS[i].id]=1;
 for(var j=0;j<OUT.length;j++)if(!hay[OUT[j].id])PROGRAMS.push(OUT[j]);
-["Belleza y presencia","Acompañamiento del dolor","Balance mental","Balance emocional","Blindaje energético","Amor y relaciones"].forEach(function(c){
+["Belleza total","Fuerza interior","Balance emocional","Blindaje energético","Amor y relaciones"].forEach(function(c){
   if(CATS.indexOf(c)<0)CATS.push(c)});
 })();
