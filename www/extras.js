@@ -180,11 +180,19 @@ function setSleep(min){clearTimeout(sleepT);sleepEnd=Date.now()+min*60000;
 /* ---------- 6. voz guiada ---------- */
 var VOCES=[
  {id:"relax", n:"Relajante",              rate:.70, pitch:.95},
- {id:"mujer", n:"Mujer suave y pausada",  rate:.62, pitch:1.04},
- {id:"hombre",n:"Hombre suave y pausado", rate:.64, pitch:.78},
- {id:"nina",  n:"Niña alegre",            rate:.92, pitch:1.55},
+ {id:"mujer", n:"Mujer suave y pausada",  rate:.62, pitch:1.04, pref:/x-(eea|eef|esc|esf)|female|mujer/i},
+ {id:"hombre",n:"Hombre grave de locutor",rate:.58, pitch:.62, pref:/x-(eed|sfb|esd|eec)|male|hombre|masculin/i},
+ {id:"nina",  n:"Niña alegre",            rate:.92, pitch:1.55, pref:/x-(eea|eef)|female/i},
  {id:"andro", n:"Meditativa andrógina",   rate:.56, pitch:.88}
 ];
+/* elige en el teléfono la voz que mejor encaja con el estilo pedido */
+function prefiere(V){
+  if(!V.pref)return null;
+  var L=vocesEs();
+  for(var i=0;i<L.length;i++){var n=(L[i].name||"")+" "+(L[i].voiceURI||"");
+    if(V.pref.test(n))return L[i].name||null}
+  return null;
+}
 var VOICES=[];
 function loadVoices(){
   try{
@@ -205,6 +213,7 @@ function hablar(text,forzar){
   if(!forzar&&!opt("voice",true))return;
   var clean=suave(text); if(!clean)return;
   var V=vozSel(), nom=opt("vozName","");
+  if(!nom)nom=prefiere(V)||"";
   if(CAP.TextToSpeech&&isNative){
     var o={text:clean,lang:"es-MX",rate:V.rate,pitch:V.pitch,volume:1,category:"playback"};
     if(nom){for(var i=0;i<VOICES.length;i++){if((VOICES[i].name||"")===nom){o.voice=i;o.lang=VOICES[i].lang||o.lang;break}}}
