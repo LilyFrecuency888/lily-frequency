@@ -55,7 +55,7 @@ mk("Balance emocional",[
 mk("Blindaje energético",[
 ["bli-general","Protección general","Antes de salir, de dar sesión o de un día con mucha gente. Raíz y corona juntas","396,7.83,6,Raíz|963,7.83,6,Corona|432,7.83,5,Sellar"],
 ["bli-pantallas","Saturación de pantallas","Para cuando el día de dispositivos te dejó con la cabeza zumbando","432,8,8,Bajar el ruido|136.1,7.83,10,Ritmo natural"],
-["bli-celular","Blindaje celular","Enfocada en el cuerpo. Tono grave y constante con pulso de tierra","174,7.83,8,Cuerpo|285,7.83,8,Células"],
+["bli-celular","Blindaje del cuerpo","Enfocada en el cuerpo. Tono grave y constante con pulso de tierra","174,7.83,8,Cuerpo|285,7.83,8,Células"],
 ["bli-mental","Blindaje mental","Para no absorber el drama ajeno. Especial para terapeutas y para quien escucha mucho","741,8,8,Filtro|852,7,8,Discernir"],
 ["bli-sueno","Blindaje del sueño","Para dormir sin absorber. Ponla al acostarte y déjala","396,6,8,Soltar el día|174,4,12,Protección en delta"],
 ["bli-geopatia","Equilibrio del lugar","Para el espacio: cuarto, consultorio u oficina. Ponla en parlante","136.1,7.83,15,Armonizar el espacio|432,7.83,10,Asentar"],
@@ -69,7 +69,7 @@ mk("Amor y relaciones",[
 ["am-apertura","Apertura al amor","Para dejar de cerrar la puerta sin darte cuenta","639,8,10,Abrir|528,8,8,Merecer"],
 ["am-pareja","Armonía en pareja","Escúchenla juntos si pueden. Si no, pensando en el vínculo","639,8,10,Vínculo|528,8,8,Ternura"],
 ["am-comunicacion","Comunicación amorosa","Antes de la conversación difícil. Baja la defensa y abre la garganta","741,8,6,Decir|639,8,10,Desde el cariño"],
-["am-sanar","Sanación de vínculos","Para lo que quedó roto y todavía duele. 639 en theta","639,6,12,Sanar|528,7,8,Reparar"],
+["am-sanar","Reparar vínculos","Para lo que quedó roto y todavía duele. 639 en theta","639,6,12,Reparar|528,7,8,Sostener"],
 ["am-perdon","Perdón","A otro o a ti. No obliga a nada, solo abre espacio","396,6,8,Lo que pesa|639,7,10,Soltar la deuda"],
 ["am-soltar","Soltar relaciones pasadas","Para el vínculo que te tiene esperando. Soltar sin odiar","396,7,10,Soltar|639,7,8,Desde el cariño"],
 ["am-atraer","Atraer pareja afín","No persigue: se prepara. Abre el corazón y afirma lo que sí quieres","639,8,10,Disponible|528,9,8,Afín a mí"],
