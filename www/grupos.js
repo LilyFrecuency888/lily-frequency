@@ -93,6 +93,18 @@ caja.onclick=function(e){
   pintaGrupos();renderCats();renderLib();
 })();
 
+/* total de programas, visible y útil para la ficha de Play */
+var cuenta=document.createElement("p");
+cuenta.className="catvacia";
+cuenta.style.cssText="margin:-4px 0 10px;font-size:.8rem;opacity:.75";
+caja.parentNode.insertBefore(cuenta,caja.nextSibling);
+function pintaCuenta(){
+  var n=PROGRAMS.length, c=CATS.filter(function(x){return x!=="Todos"&&x!=="Favoritos"}).length;
+  cuenta.textContent=n+" programas en "+c+" categorías";
+}
+pintaCuenta();
+window.LF_TOTAL=PROGRAMS.length;
+
 window.LilyG={refrescar:function(){
   gIdx=buscaGrupo(cat);pintaGrupos();renderCats();renderLib()}};
 })();
