@@ -7,7 +7,7 @@ var caja=document.getElementById("cats"); if(!caja)return;
 var GRUPOS=[
  {n:"Para hoy", i:"✦", c:["Todos","Favoritos","Guiadas"]},
  {n:"Mente",    i:"◎", c:["Aprendizaje y memoria","Mente","Equilibrio mental","Ondas","Hemisferios","Gamma 40 Hz","Mente y rendimiento","Enfoque y sistema nervioso"]},
- {n:"Emoción",  i:"♡", c:["Balance emocional","Emociones","Fuerza interior","Amor y relaciones","Subliminales","Calma y ánimo","Tapping","Duelo"]},
+ {n:"Emoción",  i:"♡", c:["Balance emocional","Emociones","Fuerza interior","Amor y relaciones","Subliminales","Calma y ánimo","Tapping","Flores de Bach","Duelo"]},
  {n:"Cuerpo",   i:"✿", c:["Cuerpo y vitalidad","Cuerpo","Belleza total","Bioenergética","Sueño","Energía","Naturaleza y cuerpo"]},
  {n:"Energía",  i:"≋", c:["Equilibrio energético","Blindaje energético","Resiliencia energética","Chakras","Planetas","Diapasones","Solfeggio","Limpiezas energéticas","Reiki"]},
  {n:"Manifestar", i:"✧", c:["Métodos de manifestación","Horas espejo y números","Visualizaciones","Abundancia"]},
