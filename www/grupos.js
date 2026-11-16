@@ -6,13 +6,17 @@ var caja=document.getElementById("cats"); if(!caja)return;
 
 var GRUPOS=[
  {n:"Para hoy", i:"✦", c:["Todos","Favoritos","Guiadas"]},
- {n:"Mente",    i:"◎", c:["Aprendizaje y memoria","Mente","Equilibrio mental","Ondas","Hemisferios"]},
- {n:"Emoción",  i:"♡", c:["Balance emocional","Emociones","Fuerza interior","Amor y relaciones","Subliminales"]},
- {n:"Cuerpo",   i:"✿", c:["Cuerpo y vitalidad","Cuerpo","Belleza total","Bioenergética","Sueño","Energía"]},
- {n:"Energía",  i:"≋", c:["Equilibrio energético","Blindaje energético","Resiliencia energética","Chakras","Planetas","Diapasones","Solfeggio"]},
- {n:"Espíritu", i:"✡", c:["Punto Cero","Conciencia y linaje","Conexión espiritual","Espiritual","Abundancia"]},
+ {n:"Mente",    i:"◎", c:["Aprendizaje y memoria","Mente","Equilibrio mental","Ondas","Hemisferios","Gamma 40 Hz","Mente y rendimiento","Enfoque y sistema nervioso"]},
+ {n:"Emoción",  i:"♡", c:["Balance emocional","Emociones","Fuerza interior","Amor y relaciones","Subliminales","Calma y ánimo","Tapping","Duelo"]},
+ {n:"Cuerpo",   i:"✿", c:["Cuerpo y vitalidad","Cuerpo","Belleza total","Bioenergética","Sueño","Energía","Naturaleza y cuerpo"]},
+ {n:"Energía",  i:"≋", c:["Equilibrio energético","Blindaje energético","Resiliencia energética","Chakras","Planetas","Diapasones","Solfeggio","Limpiezas energéticas","Reiki"]},
+ {n:"Manifestar", i:"✧", c:["Métodos de manifestación","Horas espejo y números","Visualizaciones","Abundancia"]},
+ {n:"Caminos",  i:"❂", c:["Números angelicales","Arcángeles","Ho'oponopono","Mantras","Registros akáshicos"]},
+ {n:"Ciclos",   i:"☾", c:["Fases de la luna","Zodiaco","Días planetarios"]},
+ {n:"Espíritu", i:"✡", c:["Punto Cero","Conciencia y linaje","Conexión espiritual","Espiritual","Tercer ojo e intuición","Viaje interior"]},
  {n:"Míos",     i:"♪", c:["Tarareo","Música","Acompañamiento"]}
 ];
+
 
 var st=document.createElement("style");
 st.textContent=[
