@@ -4,9 +4,9 @@
 **Descripción breve (máx. 80):** Frecuencias, meditación guiada y respiración para tu bienestar diario.
 
 **Descripción completa:**
-Lily Frequency es tu espacio de bienestar sonoro. 555 programas de frecuencias para acompañar tu día: relajación, sueño, enfoque, emociones, chakras y meditación.
+Lily Frequency es tu espacio de bienestar sonoro. 555 programas de frecuencias para acompañar tu día: relajación, sueño, enfoque, emociones, amor y relaciones, chakras y meditación.
 
-✿ Programas por categorías: Guiadas, Tarareo, Música propia, Mente, Ondas cerebrales, Emociones, Sueño, Energía, Cuerpo, Acompañamiento, Espiritual, Chakras, Solfeggio y Planetarias.
+✿ Programas por categorías: Guiadas, Tarareo, Música propia, Mente, Ondas cerebrales, Emociones, Amor y relaciones, Sueño, Energía, Cuerpo, Acompañamiento, Espiritual, Chakras, Solfeggio y Planetarias.
 ✿ Tres modos de sonido: tono puro, binaural (con audífonos) e isocrónico (con parlante).
 ✿ Meditaciones y respiraciones guiadas con indicaciones en pantalla: respiración ascendente, coherencia del corazón, 4-7-8, cuadrada y más.
 ✿ Guía de alimentación consciente: energía según la tradición china y nutrientes de más de 50 alimentos.
@@ -19,7 +19,7 @@ Lily Frequency es tu espacio de bienestar sonoro. 555 programas de frecuencias p
 ✿ Frecuencia libre: crea tus propias secuencias y guárdalas.
 ✿ Sesiones a distancia: tu terapeuta te envía un código con tu sesión personalizada e intención.
 ✿ Membresía con código mensual para abrir todos los programas.
-✿ Sin registro, sin anuncios y sin recopilar datos.
+✿ Tu perfil (nombre, fecha de nacimiento y foto) se guarda solo en tu teléfono y nunca sale de ahí. Sin anuncios, sin analítica y sin rastreo.
 
 Lily Frequency es una herramienta de apoyo y relajación. No diagnostica, trata ni cura enfermedades y no sustituye atención médica o psicológica. Usa volumen bajo y no la uses mientras manejas.
 
