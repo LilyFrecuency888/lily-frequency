@@ -303,7 +303,15 @@ mk("Registros akáshicos",[
   [136.1,5,6,"Asentar",""],
   [852,5,14,"Preguntar","Tu pregunta. Y después, silencio largo."],
   [639,6,4,"Agradecer",""],
-  [963,7.83,3,"Cerrar","Cierra completo antes de levantarte."]]]
+  [963,7.83,3,"Cerrar","Cierra completo antes de levantarte."]]],
+ ["cam-81-sobre-el-dinero","Sobre el dinero","Para el patrón con lo que entra y lo que se va. Abre, pregunta y cierra",[
+  [432,8,3,"Abrir","Haz tu apertura como siempre. Hoy la consulta es sobre el dinero."],
+  [852,5,12,"Preguntar","La pregunta no es cuánto voy a ganar. Es: qué aprendí de niña sobre el dinero, y de quién. Deja que venga la escena, no la explicación."],
+  [963,7,5,"Cerrar","Cierra el registro. Lo que viste se queda trabajando solo."]]],
+ ["cam-82-para-otra-persona-con-permiso","Para otra persona · con permiso","Consultar por alguien más. Solo con su permiso dicho en palabras: sin eso, no se abre",[
+  [432,8,4,"El permiso","Antes de nada: esa persona te dio permiso. No lo supusiste, no lo diste por hecho porque la quieres. Te lo dijo. Si no te lo dijo, cierra aquí y no sigas."],
+  [852,5,11,"Consultar","Pregunta lo que te pidió, con sus palabras, no con las tuyas. No preguntes lo que a ti te da curiosidad. No es tu registro."],
+  [963,7,5,"Cerrar y entregar","Cierra. Lo que recibiste se lo cuentas a ella tal cual, sin interpretarlo de más y sin lo que tú opinas."]]]
 ]);
 
 mk("Reiki",[

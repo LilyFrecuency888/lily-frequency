@@ -43,7 +43,31 @@ mk("Fases de la luna",[
   [528,9,7,"Creciente","Empuja."],
   [963,7,7,"Llena","Mira."],
   [741,7,6,"Menguante","Limpia."],
-  [136.1,5,3,"Oscura","Descansa."]]]
+  [136.1,5,3,"Oscura","Descansa."]]],
+ ["cic-46-cuarto-creciente-decidir","Cuarto creciente · Decidir","La media luna que crece, siete días después de la nueva. El punto de decidir",[
+  [432,9,3,"Medio camino","Media luna. Lo que sembraste en la nueva ya mostró si camina o no."],
+  [528,8,9,"Decidir","Aquí casi siempre aparece el primer obstáculo. No es señal de que esté mal: es la parte del ciclo donde se decide si sigues o ajustas. Decide hoy, no la semana que viene."],
+  [963,7,4,"Sostener","Ya decidiste. El resto del creciente es sostener esa decisión."]]],
+ ["cic-47-cuarto-menguante-revisar","Cuarto menguante · Revisar","La media luna que decrece, siete días después de la llena. El punto de revisar",[
+  [852,7,3,"Mirar atrás","La luz baja. Es el momento de revisar el ciclo que termina."],
+  [417,6,9,"Revisar","Qué funcionó y qué no. Sin regañarte: solo el dato. Lo que no funcionó no vuelve al próximo ciclo, y eso es ganancia."],
+  [136.1,6,4,"Guardar","Guárdalo. En la luna oscura no vas a querer pensar, y está bien."]]],
+ ["cic-48-superluna-todo-mas-fuerte","Superluna · Todo más fuerte","La llena que cae con la luna más cerca de la Tierra. Se ve más grande y se siente más",[
+  [963,9,3,"Más cerca","Esta noche la luna está en su punto más cercano del año. Se ve hasta un catorce por ciento más grande."],
+  [210.42,7,11,"Sentirlo","Todo lo de la luna llena, pero subido de volumen: la emoción, el insomnio, las ganas de decir cosas. No tomes decisiones grandes esta noche. Solo siéntelo."],
+  [639,7,4,"Bajar","Baja despacio. Mañana sigues con la cabeza más fría."]]],
+ ["cic-49-luna-azul-la-segunda-llena","Luna azul · La segunda llena","La segunda luna llena en un mismo mes. Pasa cada dos o tres años",[
+  [432,8,3,"Lo que no pasa seguido","Una luna azul es rara. Por eso la frase: once in a blue moon."],
+  [528,7,10,"Pedir lo grande","Como no se repite pronto, pide lo que no te atreves a pedir cada mes. Lo grande, lo que te da pena decir en voz alta. Dilo completo."],
+  [963,8,4,"Soltarlo","Ya está dicho. No lo repitas hasta la próxima."]]],
+ ["cic-50-luna-llena-en-tu-signo","Luna llena en tu signo","Una vez al año la llena cae en tu signo solar. Es tu luna personal",[
+  [963,9,3,"Tu luna","Una vez al año le toca a tu signo. La luna llena te ilumina a ti directamente."],
+  [852,6,11,"Verte","Mírate como te vería alguien que te quiere bien y no te debe nada. Qué ve. Qué te diría. Qué dejó de ser cierto sobre ti este año."],
+  [639,7,4,"Quedártelo","Quédate con una sola frase de esas. Es tu frase del año."]]],
+ ["cic-51-noche-de-llena-sin-sueno","Noche de llena sin sueño","Para las noches de luna llena en que no agarras el sueño. Larga y sin exigencia",[
+  [432,6,5,"No pelear","Si no viene el sueño, no lo persigas: eso lo espanta. Esta media hora no es para dormir, es para descansar aunque no duermas."],
+  [174,4,12,"Theta","Deja los ojos cerrados y el cuerpo quieto. El descanso quieto sirve casi tanto como el sueño, aunque no se sienta igual."],
+  [136.1,2,13,"Delta","Si te duermes aquí, perfecto. Si no, igual amaneces descansada."]]]
 ]);
 
 mk("Zodiaco",[
@@ -94,7 +118,55 @@ mk("Zodiaco",[
  ["cic-20-piscis","Piscis","Disolver y soñar. Para soltar los bordes",[
   [432,9,3,"Entrar","Cierra los ojos. Este mes el cielo trabaja este tema."],
   [136.1,5,10,"Agua","Deja de ser alguien por diez minutos. No tienes nombre ni historia aquí."],
-  [963,8,4,"Llevarlo","Sal con eso puesto el resto del mes."]]]
+  [963,8,4,"Llevarlo","Sal con eso puesto el resto del mes."]]],
+ ["cic-34-temporada-de-aries","Temporada de Aries","21 de marzo al 19 de abril. El año empieza aquí, no en enero",[
+  [432,9,3,"Entrar","Es el primer signo: todo vuelve a cero. Lo que no empezaste el año pasado, empieza ahora. Este programa va sobre el tono de Marte, el regente del signo."],
+  [144.72,7,10,"Arrancar","Elige una sola cosa que llevas posponiendo y dale el primer paso esta semana. Uno solo, el más chiquito. El mes de Aries premia al que arranca, no al que planea."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-35-temporada-de-tauro","Temporada de Tauro","20 de abril al 20 de mayo. El mes de bajarle al ritmo y disfrutar",[
+  [432,9,3,"Entrar","Después del arranque viene el cuerpo. Este mes no se empuja: se sostiene. Este programa va sobre el tono de Venus, el regente del signo."],
+  [221.23,7,10,"Asentar","Qué de lo que empezaste merece quedarse. Dale raíz: un horario, un lugar, una rutina. Y come rico, duerme bien, toca cosas suaves. En Tauro eso es trabajo espiritual."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-36-temporada-de-geminis","Temporada de Géminis","21 de mayo al 20 de junio. El mes de preguntar y de decir",[
+  [432,9,3,"Entrar","Mercurio manda este mes. Lo que no se dice, se enreda. Este programa va sobre el tono de Mercurio, el regente del signo."],
+  [141.27,7,10,"Hablar","Hay una conversación que vienes evitando. En este mes se da más fácil. Mándale el mensaje, haz la llamada, pregunta lo que no te atreves."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-37-temporada-de-cancer","Temporada de Cáncer","21 de junio al 22 de julio. El mes de la casa y de los tuyos",[
+  [432,9,3,"Entrar","La Luna rige este mes. Todo se vuelve más sensible y más hacia adentro. Este programa va sobre el tono de Luna, el regente del signo."],
+  [210.42,7,10,"Volver","Acuérdate de dónde vienes. Llama a alguien de tu familia, arregla un rincón de tu casa, cocina algo que te recuerde a tu niñez. Lo de afuera puede esperar un mes."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-38-temporada-de-leo","Temporada de Leo","23 de julio al 22 de agosto. El mes de dejar de achicarte",[
+  [432,9,3,"Entrar","El Sol en su propia casa. Es el mes del año en que menos cuesta mostrarse. Este programa va sobre el tono de Sol, el regente del signo."],
+  [126.22,7,10,"Brillar","Dónde te has estado haciendo chiquita para no incomodar. Este mes di tu precio completo, publica lo que no publicas, acepta el halago sin desviarlo."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-39-temporada-de-virgo","Temporada de Virgo","23 de agosto al 22 de septiembre. El mes de ordenar lo revuelto",[
+  [432,9,3,"Entrar","Después del brillo viene el detalle. Virgo no construye: corrige. Este programa va sobre el tono de Mercurio, el regente del signo."],
+  [141.27,7,10,"Afinar","Elige un área desordenada: los papeles, las cuentas, la agenda, un cajón. Ordénala de verdad. El mes de Virgo paga el trabajo aburrido."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-40-temporada-de-libra","Temporada de Libra","23 de septiembre al 22 de octubre. El mes de los vínculos",[
+  [432,9,3,"Entrar","Venus otra vez, pero ahora hacia afuera: el otro, el acuerdo, lo justo. Este programa va sobre el tono de Venus, el regente del signo."],
+  [221.23,7,10,"Equilibrar","Qué relación está despareja: das mucho más o recibes mucho más. Este mes se puede renegociar sin romper. Di lo que necesitas en una frase."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-41-temporada-de-escorpio","Temporada de Escorpio","23 de octubre al 21 de noviembre. El mes de lo que no se dice",[
+  [432,9,3,"Entrar","El mes más hondo del año. Sale a la superficie lo que estaba guardado. Este programa va sobre el tono de Plutón, el regente del signo."],
+  [140.25,7,10,"Bajar al fondo","No le huyas a lo que se remueve: en Escorpio lo que sube es lo que ya estaba listo para salir. Escríbelo si no puedes decirlo. Nadie tiene que leerlo."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-42-temporada-de-sagitario","Temporada de Sagitario","22 de noviembre al 21 de diciembre. El mes de agrandar el horizonte",[
+  [432,9,3,"Entrar","Júpiter expande. Después del fondo de Escorpio, el aire. Este programa va sobre el tono de Júpiter, el regente del signo."],
+  [183.58,7,10,"Abrir","Qué te has estado creyendo que es imposible. Este mes piénsalo en grande otra vez, sin calcular todavía el cómo. Estudia algo, planea un viaje, di que sí."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-43-temporada-de-capricornio","Temporada de Capricornio","22 de diciembre al 19 de enero. El mes de construir con paciencia",[
+  [432,9,3,"Entrar","Saturno pone el límite y el tiempo largo. Este mes no se sueña: se arma. Este programa va sobre el tono de Saturno, el regente del signo."],
+  [147.85,7,10,"Estructurar","Toma lo que imaginaste en Sagitario y ponle fechas. Qué va primero, qué va después, qué haces este mes. Capricornio premia al que hace el calendario."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-44-temporada-de-acuario","Temporada de Acuario","20 de enero al 18 de febrero. El mes de salirte del molde",[
+  [432,9,3,"Entrar","Urano rompe lo que ya no sirve. Es el mes raro del año, y está bien que lo sea. Este programa va sobre el tono de Urano, el regente del signo."],
+  [207.36,7,10,"Soltar el molde","Qué haces solo porque siempre se ha hecho así. Este mes cambia una de esas cosas. Y busca a tu gente: Acuario es el signo de la tribu, no de la soledad."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]],
+ ["cic-45-temporada-de-piscis","Temporada de Piscis","19 de febrero al 20 de marzo. El mes de soltar los bordes",[
+  [432,9,3,"Entrar","El último signo. Lo que cierra el año zodiacal antes de volver a Aries. Este programa va sobre el tono de Neptuno, el regente del signo."],
+  [211.44,7,10,"Disolver","Este mes no exige nada: perdona, descansa, llora si hay que llorar. Suelta lo que no se va a resolver. En tres semanas arranca otra vuelta y conviene llegar liviana."],
+  [963,8,4,"Llevarlo","Sal con una sola decisión tomada. Vuelve a este programa cuantas veces quieras mientras dure la temporada."]]]
 ]);
 
 mk("Días planetarios",[
