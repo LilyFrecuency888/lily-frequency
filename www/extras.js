@@ -413,6 +413,41 @@ function calcBpm(T,V){if(T.length<120)return 0;
 /* ---------- arranque ---------- */
 document.addEventListener("visibilitychange",()=>{if(document.hidden)stopCam()});
 syncToggles();
-if(ambOn())document.addEventListener("click",function once(){applyAmb();document.removeEventListener("click",once)});
+/* El ambiente ya no se vuelve a encender solo al abrir la app: empieza apagado y se enciende desde «Ambiente». */
+if(ambOn()){setOpt("amb",{lluvia:0,mar:0,viento:0,cuencos:0});syncToggles()}
+
+/* ---------- pausa siempre a la mano ---------- */
+(function(){
+  const st=document.createElement("style");
+  st.textContent=".xmini{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(78px + env(safe-area-inset-bottom,0px));z-index:35;"+
+    "display:flex;align-items:center;gap:10px;padding:8px 8px 8px 16px;border-radius:999px;background:rgba(29,23,48,.96);border:1px solid rgba(201,167,255,.55);"+
+    "box-shadow:0 8px 28px rgba(10,6,20,.55);color:#f4eeff;font-weight:700;font-size:.86rem;max-width:calc(100% - 180px);backdrop-filter:blur(8px)}"+
+    ".xmini span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"+
+    ".xmini button{flex:none;border-radius:999px;padding:9px 14px;font-weight:700;background:linear-gradient(90deg,#c9a7ff,#ff9fd2,#8ff0d0);color:#2a1640}"+
+    ".xmini[hidden]{display:none!important}";
+  document.head.appendChild(st);
+  const m=document.createElement("div");m.className="xmini";m.hidden=true;m.setAttribute("role","region");m.setAttribute("aria-label","Sonido");
+  m.innerHTML='<span id="xmTx">♪ Sonando</span><button type="button" id="xmBtn">❚❚ Pausar</button>';
+  document.body.appendChild(m);
+  const tx=q(m,"#xmTx"),bt=q(m,"#xmBtn");
+  function estado(){
+    let prog=false,pau=false;try{prog=!!playing;pau=!!paused}catch(e){}
+    const amb=ambOn(),med=!!document.getElementById("lfMed");
+    if(med){m.hidden=true;return}   /* la meditación ya tiene sus propios botones */
+    if(prog||amb){m.hidden=false;tx.textContent="♪ "+(prog&&cur?cur.name:"Ambiente");bt.textContent="❚❚ Pausar";bt.dataset.a="pausa"}
+    else if(pau&&cur){m.hidden=false;tx.textContent="En pausa · "+cur.name;bt.textContent="▶ Seguir";bt.dataset.a="seguir"}
+    else m.hidden=true;
+  }
+  bt.onclick=function(){
+    if(bt.dataset.a==="seguir"){try{play()}catch(e){}}
+    else{
+      try{if(playing)pause()}catch(e){}
+      if(ambOn()){setOpt("amb",{lluvia:0,mar:0,viento:0,cuencos:0});applyAmb();syncToggles()}
+      stopSpeak();
+    }
+    setTimeout(estado,80);
+  };
+  setInterval(estado,500);estado();
+})();
 window.LilyX={applyAmb,calcBpm,streak};
 })();
