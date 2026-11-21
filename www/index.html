@@ -644,6 +644,12 @@ $("lib").onclick=e=>{
 let ctx,master,analyser,voice=null,cur=null,idx=0,stepStart=0,elapsedBefore=0,playing=false,paused=false,pausedAt=0,tick=null,wake=null;
 const volLevel=()=>$("vol").value/100*.6;
 function ensureCtx(){if(ctx)return;ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=volLevel();analyser=ctx.createAnalyser();analyser.fftSize=2048;master.connect(analyser);analyser.connect(ctx.destination)}
+/* Reloj de la sesión: no depende del reloj del audio, que en Android salta cuando el sistema pausa el sonido */
+const clk=()=>performance.now()/1000;
+/* Despertar el audio sin quedarse esperando: Android solo lo deja arrancar con un toque */
+function wakeAudio(){try{if(ctx&&ctx.state!=="running")ctx.resume().catch(()=>{})}catch{}}
+["touchstart","pointerdown","keydown"].forEach(ev=>document.addEventListener(ev,()=>{if(playing)wakeAudio()},{passive:true,capture:true}));
+document.addEventListener("visibilitychange",()=>{if(!document.hidden&&playing)wakeAudio()});
 function effMode(s){if(s.mode!=="pure"&&!s.b)return "pure";return (s.mode==="binaural"&&$("noHeadphones").checked)?"iso":s.mode}
 function makeVoice(s){
   const t=ctx.currentTime,out=ctx.createGain(),tone=ctx.createGain();out.gain.setValueAtTime(0,t);out.gain.linearRampToValueAtTime(1,t+3);out.connect(master);tone.gain.value=s.tv??1;tone.connect(out);
@@ -680,7 +686,7 @@ function makeVoice(s){
   return {out,nodes,breath,timer};
 }
 function killVoice(v,fade=1.5){if(!v)return;if(v.timer)clearInterval(v.timer);const t=ctx.currentTime;v.out.gain.cancelScheduledValues(t);v.out.gain.setValueAtTime(v.out.gain.value,t);v.out.gain.linearRampToValueAtTime(0,t+fade);setTimeout(()=>v.nodes.forEach(n=>{try{n.stop&&n.stop()}catch{}try{n.disconnect()}catch{}}),fade*1000+100)}
-function startStep(i){idx=i;killVoice(voice);voice=makeVoice(cur.steps[i]);stepStart=ctx.currentTime;elapsedBefore=cur.steps.slice(0,i).reduce((a,x)=>a+x.dur,0);showStep()}
+function startStep(i){idx=i;killVoice(voice);voice=makeVoice(cur.steps[i]);stepStart=clk();elapsedBefore=cur.steps.slice(0,i).reduce((a,x)=>a+x.dur,0);showStep()}
 function load(p,autoplay){
   stop(true);cur=p;idx=0;elapsedBefore=0;
   $("intent").hidden=!p.intent&&!p.when;$("intent").innerHTML=(p.from?`<b>De ${esc(p.from)}${p.client?" para "+esc(p.client):""}</b><br>`:"")+(p.intent?"“"+esc(p.intent)+"”":"")+(p.when?`<br><span class="muted">${esc(p.when)}</span>`:"");
@@ -688,13 +694,13 @@ function load(p,autoplay){
 }
 async function play(){
   if(!cur)load(PROGRAMS.find(p=>p.id==="sol528"));
-  ensureCtx();await ctx.resume();
-  if(paused){paused=false;master.gain.setTargetAtTime(volLevel(),ctx.currentTime,.2);stepStart=ctx.currentTime-pausedAt}
+  ensureCtx();wakeAudio();
+  if(paused){paused=false;master.gain.setTargetAtTime(volLevel(),ctx.currentTime,.2);stepStart=clk()-pausedAt}
   else if(!playing)startStep(0);
   playing=true;setState();clearInterval(tick);tick=setInterval(update,250);
   try{wake=await navigator.wakeLock?.request("screen")}catch{}
 }
-function pause(){if(!playing)return;paused=true;playing=false;pausedAt=ctx.currentTime-stepStart;master.gain.setTargetAtTime(0,ctx.currentTime,.15);clearInterval(tick);setState()}
+function pause(){if(!playing)return;paused=true;playing=false;pausedAt=clk()-stepStart;master.gain.setTargetAtTime(0,ctx.currentTime,.15);clearInterval(tick);setState()}
 function stop(silent){
   clearInterval(tick);if(voice)killVoice(voice,.6);voice=null;playing=false;paused=false;
   if(ctx)master.gain.setTargetAtTime(volLevel(),ctx.currentTime,.05);
@@ -704,10 +710,10 @@ function stop(silent){
 }
 function logDone(){history.unshift({n:cur.name,c:cur.client||"",d:new Date().toISOString(),m:Math.round(total(cur)/60)});history=history.slice(0,50);store.set("lf-hist",history);renderHistory()}
 function update(){
-  if(!playing||!cur)return;const s=cur.steps[idx],inStep=ctx.currentTime-stepStart;
+  if(!playing||!cur)return;const s=cur.steps[idx],inStep=clk()-stepStart;
   if(inStep>=s.dur){if(idx<cur.steps.length-1){startStep(idx+1);toast("Siguiente: "+cur.steps[idx].label)}else{logDone();stop(true);toast("Sesión completa ✨");return}}
-  breathTick(cur.steps[idx],ctx.currentTime-stepStart);
-  const el=elapsedBefore+Math.min(ctx.currentTime-stepStart,cur.steps[idx].dur);$("tEl").textContent=fmt(el);$("barFill").style.width=(el/total(cur)*100)+"%";
+  breathTick(cur.steps[idx],clk()-stepStart);
+  const el=elapsedBefore+Math.max(0,Math.min(clk()-stepStart,cur.steps[idx].dur));$("tEl").textContent=fmt(el);$("barFill").style.width=(el/total(cur)*100)+"%";
 }
 let breathLevel=0;
 function breathTick(s,t){
@@ -732,7 +738,7 @@ $("playBtn").onclick=()=>playing?pause():play();
 $("stopBtn").onclick=()=>stop();
 $("nextBtn").onclick=()=>{if(!cur||!playing)return;idx<cur.steps.length-1?startStep(idx+1):stop()};
 $("vol").oninput=e=>{$("volV").textContent=e.target.value+"%";if(ctx&&playing)master.gain.setTargetAtTime(volLevel(),ctx.currentTime,.05)};
-$("noHeadphones").onchange=e=>{store.set("lf-nohp",e.target.checked);if(playing){const el=ctx.currentTime-stepStart;startStep(idx);stepStart=ctx.currentTime-el}else showStep()};
+$("noHeadphones").onchange=e=>{store.set("lf-nohp",e.target.checked);if(playing){const el=clk()-stepStart;startStep(idx);stepStart=clk()-el}else showStep()};
 
 /* ---------- Libre / secuencias ---------- */
 function readCustom(){
@@ -945,7 +951,7 @@ function draw(t){
   for(let r=0;r<6;r++){const R=80+r*24+(playing?ph*5*(1+amp*3):0)+breathLevel*26;g.beginPath();g.arc(cx,cy,R,0,Math.PI*2);g.strokeStyle=`rgba(${r%2?"255,159,210":"201,167,255"},${.42-r*.06})`;g.lineWidth=2;g.stroke()}
   g.beginPath();const N=180;for(let i=0;i<=N;i++){const a=i/N*Math.PI*2,v=analyser&&playing?(buf[Math.floor(i/N*1023)]-128)/128:0,R=68+v*34;const x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;i?g.lineTo(x,y):g.moveTo(x,y)}
   g.strokeStyle="rgba(143,240,208,.8)";g.lineWidth=2;g.stroke();
-  if(!reduce||playing)requestAnimationFrame(draw);
+  requestAnimationFrame(draw);
 }
 requestAnimationFrame(draw);
 

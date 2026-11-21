@@ -207,6 +207,9 @@ if(typeof _play==="function"){
     var yaSonando=false;
     try{yaSonando=!!(playing||paused)}catch(e){}
     if(opt()!=="on"||yaSonando||corriendo)return _play.apply(window,arguments);
+    /* Encender el audio del programa ahora, con el toque: en Android, si se enciende
+       después de la meditación (sin toque), el sistema lo deja mudo */
+    try{if(typeof ensureCtx==="function"){ensureCtx();if(typeof wakeAudio==="function")wakeAudio()}}catch(e){}
     var args=arguments;
     correr(function(){try{_play.apply(window,args)}catch(e){}});
     return Promise.resolve();
