@@ -6,7 +6,7 @@
 <title>Lily Frequency</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#120f1a">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap">
 <style>
 /* Layout: app móvil de una columna — cristal reproductor arriba, contenido por pestañas, barra inferior fija */
 :root{
@@ -165,12 +165,69 @@ header.top{background:var(--headbg);margin:calc(-14px - env(safe-area-inset-top,
 .faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .faq summary{font-weight:700;cursor:pointer}
 .faq p{margin-top:6px;color:var(--muted)}
+
+.logo-geo{width:40px;height:40px;flex:none;border-radius:12px;box-shadow:0 0 18px rgba(201,167,255,.40)}
+/* ===== Tema «Noche lila»: el mismo estilo de la web (oscuro, por defecto) ===== */
+:root[data-theme="dark"]{
+  --bg:#120f1a;--surface:rgba(29,23,48,.82);--surface2:#251e34;--line:#3a2f52;
+  --fg:#f4eeff;--muted:#bfb2dc;--lila:#c9a7ff;--lila2:#e4d4ff;--rosa:#ff9fd2;--menta:#8ff0d0;--oro:#ffd98a;--ink:#2a1640;
+  --serif:"Cormorant Garamond",Georgia,serif;--body:"Quicksand","Nunito",system-ui,sans-serif;
+  --aurora:linear-gradient(90deg,#c9a7ff,#ff9fd2,#8ff0d0);
+  --navbg:rgba(18,15,26,.94);--headbg:transparent;--edge:var(--line)}
+:root[data-theme="dark"] body{background:radial-gradient(1000px 700px at 50% -10%,#3a2563,#120f1a 60%) fixed,#120f1a}
+/* títulos con la letra elegante de la web */
+:root[data-theme="dark"] h1{font-family:var(--serif);font-weight:600;font-size:1.6rem;letter-spacing:.01em}
+:root[data-theme="dark"] h1 small{font-family:var(--body)}
+:root[data-theme="dark"] h2{font-family:var(--serif);font-weight:600;font-size:1.75rem;line-height:1.1;margin:0 0 14px;padding-bottom:10px;position:relative}
+:root[data-theme="dark"] h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:3px;border-radius:3px;background:var(--aurora)}
+:root[data-theme="dark"] .stepcard h3,:root[data-theme="dark"] .card .t{font-family:var(--serif);font-weight:600;font-size:1.22rem;line-height:1.2}
+/* letras arcoíris, como «Zona de miembros» en la web */
+:root[data-theme="dark"] h1 em,:root[data-theme="dark"] h2 em,:root[data-theme="dark"] .stepcard h3 em{font-style:italic;font-weight:500;
+  background:var(--aurora);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em}
+:root[data-theme="light"] h1 em,:root[data-theme="light"] h2 em{font-style:normal}
+/* paneles y tarjetas como las cajas de la web */
+:root[data-theme="dark"] .panel{background:var(--surface);border:1px solid rgba(201,167,255,.35);border-radius:24px;padding:18px;
+  box-shadow:0 10px 40px rgba(20,10,40,.45),inset 0 1px 0 rgba(255,255,255,.04);backdrop-filter:blur(6px)}
+:root[data-theme="dark"] .card{background:linear-gradient(160deg,rgba(201,167,255,.10),rgba(255,159,210,.05) 60%,rgba(143,240,208,.05));
+  border:1px solid rgba(201,167,255,.30);border-radius:20px;padding:16px;gap:6px;transition:border-color .2s,box-shadow .2s}
+:root[data-theme="dark"] .card:hover{border-color:var(--rosa)}
+:root[data-theme="dark"] .card.active{border-color:var(--menta);box-shadow:0 0 0 1px var(--menta) inset,0 0 24px rgba(143,240,208,.18)}
+:root[data-theme="dark"] .card .d{font-size:.86rem;line-height:1.5}
+:root[data-theme="dark"] .card .m{color:var(--lila2)}
+:root[data-theme="dark"] .stepcard{background:var(--surface);border:1px solid rgba(201,167,255,.35);border-radius:22px}
+:root[data-theme="dark"] .foryou{border-color:var(--menta);background:linear-gradient(135deg,rgba(143,240,208,.14),rgba(201,167,255,.08))}
+:root[data-theme="dark"] .guide{background:linear-gradient(135deg,rgba(201,167,255,.15),rgba(255,159,210,.08));border:1px solid rgba(201,167,255,.4);border-radius:18px}
+/* botones con el degradado de la web */
+:root[data-theme="dark"] .btn{border-radius:999px;padding:12px 20px;background:transparent;border:1.5px solid rgba(201,167,255,.5);color:var(--lila2)}
+:root[data-theme="dark"] .btn.pri,:root[data-theme="dark"] .ask{background:var(--aurora);color:var(--ink);border:0;box-shadow:0 6px 22px rgba(201,167,255,.30)}
+:root[data-theme="dark"] .round.play,:root[data-theme="dark"] .play{background:var(--aurora);border:0;color:var(--ink);box-shadow:0 8px 30px rgba(255,159,210,.35)}
+:root[data-theme="dark"] .round{background:rgba(37,30,52,.8);border-color:rgba(201,167,255,.35)}
+:root[data-theme="dark"] .cats button{background:rgba(37,30,52,.7);border-color:rgba(201,167,255,.3);color:var(--lila2);padding:8px 14px}
+:root[data-theme="dark"] .cats button[aria-pressed=true]{background:var(--aurora);color:var(--ink);border-color:transparent}
+:root[data-theme="dark"] .bar{background:rgba(201,167,255,.15)}
+:root[data-theme="dark"] .bar i{background:var(--aurora)}
+:root[data-theme="dark"] .badge.vip{background:var(--aurora)}
+:root[data-theme="dark"] .gem{background:conic-gradient(from 210deg,#2a2140,var(--lila),#2a2140,var(--rosa),#2a2140,var(--menta),#2a2140)}
+:root[data-theme="dark"] nav.tabs button[aria-selected=true]{color:var(--rosa)}
+:root[data-theme="dark"] .overlay .box{background:radial-gradient(420px 300px at 50% 0%,#2b2050,#141022);border-color:rgba(201,167,255,.45)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brand"><div class="gem" aria-hidden="true">✿</div><h1>Lily Frequency<small>Bienestar sonoro</small></h1></div>
+    <div class="brand"><svg class="logo-geo" viewBox="-50 -50 100 100" aria-hidden="true">
+      <defs><filter id="lgGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect x="-50" y="-50" width="100" height="100" rx="24" fill="#1d1730"/>
+      <g fill="none" stroke-width="2.4" filter="url(#lgGlow)">
+        <circle r="34" stroke="#c9a7ff"/>
+        <circle r="17" stroke="#f4eeff"/>
+        <circle cx="0" cy="-17" r="17" stroke="#c9a7ff"/>
+        <circle cx="14.72" cy="-8.5" r="17" stroke="#8ff0d0"/>
+        <circle cx="14.72" cy="8.5" r="17" stroke="#ff9fd2"/>
+        <circle cx="0" cy="17" r="17" stroke="#c9a7ff"/>
+        <circle cx="-14.72" cy="8.5" r="17" stroke="#8ff0d0"/>
+        <circle cx="-14.72" cy="-8.5" r="17" stroke="#ff9fd2"/>
+      </g></svg><h1>Lily <em>Frequency</em><small>Bienestar sonoro</small></h1></div>
     <div class="hright">
       <button type="button" class="linkbtn" id="accesoBtn">Acceso</button>
       <button type="button" class="burger" id="menuBtn" aria-label="Menú">☰</button>
@@ -956,9 +1013,16 @@ function draw(t){
 requestAnimationFrame(draw);
 
 /* ---------- Inicio ---------- */
-function applyTheme(){const t=store.get("lf-theme","light");document.documentElement.setAttribute("data-theme",t);$("themeBtn").textContent=t==="light"?"◐ Cambiar a modo obsidiana":"◐ Cambiar a modo lavanda";document.querySelector('meta[name=theme-color]')?.setAttribute("content",t==="light"?"#ffffff":"#120f1a")}
+function applyTheme(){const t=store.get("lf-theme2","dark");document.documentElement.setAttribute("data-theme",t);$("themeBtn").textContent=t==="light"?"◐ Cambiar a modo noche lila":"◐ Cambiar a modo lavanda";document.querySelector('meta[name=theme-color]')?.setAttribute("content",t==="light"?"#ffffff":"#120f1a")}
 applyTheme();
-$("themeBtn").onclick=()=>{store.set("lf-theme",store.get("lf-theme","light")==="light"?"dark":"light");applyTheme()};
+/* Última palabra de cada título en letras arcoíris (como la web). Solo toca títulos de texto simple. */
+function arcoiris(){document.querySelectorAll("h2").forEach(h=>{
+  if(h.dataset.arco||h.querySelector("em")||h.children.length)return;h.dataset.arco="1";
+  const tx=h.textContent.trim(),i=tx.lastIndexOf(" ");if(!tx)return;
+  h.textContent=i>0?tx.slice(0,i+1):"";const em=document.createElement("em");em.textContent=tx.slice(i+1);h.appendChild(em)})}
+arcoiris();setTimeout(arcoiris,800);setTimeout(arcoiris,2500);
+document.addEventListener("click",()=>setTimeout(arcoiris,150),true);
+$("themeBtn").onclick=()=>{store.set("lf-theme2",store.get("lf-theme2","dark")==="light"?"dark":"light");applyTheme()};
 $("trialTxt").textContent=CONFIG.trialDays+" días gratis";$("faqTrial").textContent=CONFIG.trialDays+" días con todos los programas abiertos. Después ingresa el código del mes en Cuenta.";
 $("faqContact").innerHTML=CONFIG.whatsapp?`¿Otra duda? Escríbeme por WhatsApp: <b style="user-select:all">+${esc(CONFIG.whatsapp)}</b> · <a href="https://wa.me/${esc(CONFIG.whatsapp)}" target="_blank" rel="noopener">abrir chat</a>`:"¿Otra duda? Escríbele a tu terapeuta.";
 $("menuBtn").onclick=()=>$("menu").hidden=false;$("menuClose").onclick=()=>$("menu").hidden=true;
