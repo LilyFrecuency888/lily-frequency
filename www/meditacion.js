@@ -9,11 +9,12 @@ var setOpt=function(v){try{store.set(KEY,v)}catch(e){}};
 /* ---------- voz, con la misma preferencia que el resto de la app ---------- */
 var CAPT=(window.Capacitor&&window.Capacitor.Plugins&&window.Capacitor.Plugins.TextToSpeech)||null;
 var nativo=!!(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform());
-var RATES={relax:[.70,.95],mujer:[.62,1.04],hombre:[.64,.78],nina:[.92,1.55],andro:[.56,.88]};
+var RATES={relax:[.70,.95],mujer:[.62,1.04],hombre:[.64,.80],andro:[.56,.88]};
 function vz(){try{var id=store.get("lf-x-vozId","relax");return RATES[id]||RATES.relax}catch(e){return RATES.relax}}
 function callar(){try{CAPT&&CAPT.stop()}catch(e){}try{speechSynthesis&&speechSynthesis.cancel()}catch(e){}}
 function decir(t){
   var r=vz(), txt=String(t).replace(/[“”"«»]/g,"").replace(/!+/g,".");
+  if(typeof window.lfHablar==="function"){try{window.lfHablar(txt);return}catch(e){}}
   if(CAPT&&nativo){try{CAPT.stop().catch(function(){}).then(function(){
     return CAPT.speak({text:txt,lang:"es-MX",rate:r[0],pitch:r[1],volume:1,category:"playback"})}).catch(function(){})}catch(e){}return}
   try{var u=new SpeechSynthesisUtterance(txt);u.lang="es-MX";u.rate=r[0];u.pitch=r[1];

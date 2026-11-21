@@ -180,9 +180,14 @@ function setSleep(min){clearTimeout(sleepT);sleepEnd=Date.now()+min*60000;
 /* ---------- 6. voz guiada ---------- */
 var VOCES=[
  {id:"relax", n:"Relajante",              rate:.70, pitch:.95},
- {id:"mujer", n:"Mujer suave y pausada",  rate:.62, pitch:1.04, pref:/x-(eea|eef|esc|esf)|female|mujer/i},
- {id:"hombre",n:"Hombre grave de locutor",rate:.58, pitch:.62, pref:/x-(eed|sfb|esd|eec)|male|hombre|masculin/i},
- {id:"nina",  n:"Niña alegre",            rate:.92, pitch:1.55, pref:/x-(eea|eef)|female/i},
+ /* Voces de Google en español: eea, eec, esc, esf, sfb son de mujer; eed, eef, esd son de hombre.
+    En computadora: Helena, Laura, Sabina, Paulina, Mónica... de mujer; Pablo, Raúl, Jorge... de hombre. */
+ {id:"mujer", n:"Mujer suave y pausada",  rate:.62, pitch:1.04,
+   pref:/x-(eea|eec|esc|esf|sfb)\b|female|mujer|femenin|helena|laura|sabina|paulina|m[oó]nica|elvira|dalia|lupe|pen[eé]lope|lucia|luc[ií]a|conchita|elena|ximena|valentina/i,
+   no:/x-(eed|eef|esd)\b|(^|[^e])male|hombre|masculin|pablo|ra[uú]l|jorge|diego|juan|carlos|enrique|[aá]lvaro|miguel|enrique|andr[eé]s|gerardo|jorge|tom[aá]s/i},
+ {id:"hombre",n:"Hombre grave de locutor",rate:.58, pitch:.80,
+   pref:/x-(eed|eef|esd)\b|(^|[^e])male|hombre|masculin|pablo|ra[uú]l|jorge|diego|juan|carlos|enrique|[aá]lvaro|miguel|andr[eé]s|gerardo|tom[aá]s/i,
+   no:/x-(eea|eec|esc|esf|sfb)\b|female|mujer|femenin|helena|laura|sabina|paulina|m[oó]nica|elvira|dalia|lupe|pen[eé]lope|luc[ií]a|conchita|elena|ximena|valentina/i},
  {id:"andro", n:"Meditativa andrógina",   rate:.56, pitch:.88}
 ];
 /* Elige en el teléfono la voz que mejor encaja con el estilo pedido.
@@ -193,7 +198,10 @@ function prefiere(V){
   if(!L.length)return null;
   if(V.pref){
     for(var i=0;i<L.length;i++){var n=(L[i].name||"")+" "+(L[i].voiceURI||"");
-      if(V.pref.test(n))return L[i].name||null}
+      if(V.pref.test(n)&&!(V.no&&V.no.test(n)))return L[i].name||null}
+    /* sin una voz clara de ese tipo: al menos no usar una del tipo contrario */
+    if(V.no){for(var j=0;j<L.length;j++){var m=(L[j].name||"")+" "+(L[j].voiceURI||"");
+      if(!V.no.test(m))return L[j].name||null}}
   }
   return repartir(V);
 }
@@ -244,6 +252,8 @@ function hablar(text,forzar){
   }catch(e){}
 }
 function speak(text){return hablar(text,false)}
+/* la meditación de entrada usa la misma voz elegida */
+window.lfHablar=function(t){hablar(t,true)};
 function openVoz(){
   var V=vozSel(), on=opt("voice",true), nom=opt("vozName","");
   var estilos=VOCES.map(function(x){
@@ -258,7 +268,7 @@ function openVoz(){
   var n=cuantasVoces();
   var aviso = n<=1
     ? '<p class="muted" style="margin-top:12px;font-size:.84rem;border-top:1px solid var(--line);padding-top:10px">'+
-      '<b style="color:var(--oro)">Tu teléfono solo tiene '+(n===1?"una voz":"ninguna voz")+' en español</b>, así que los cinco estilos suenan a la misma persona con distinto tono. '+
+      '<b style="color:var(--oro)">Tu teléfono solo tiene '+(n===1?"una voz":"ninguna voz")+' en español</b>, así que los cuatro estilos suenan a la misma persona con distinto tono. '+
       'Para que suenen diferentes de verdad: Ajustes del teléfono → Accesibilidad → Texto a voz → Google → Instalar datos de voz → Español, y descarga también España, México y Estados Unidos. '+
       'Luego vuelve aquí y aparecerán todas.</p>'
     : '<p class="muted" style="margin-top:12px;font-size:.84rem">Tu teléfono tiene '+n+' voces en español y cada estilo usa una distinta. Si quieres otra combinación, elígela abajo.</p>';
