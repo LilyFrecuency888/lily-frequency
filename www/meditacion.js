@@ -206,14 +206,50 @@ if(typeof _play==="function"){
   window.play=function(){
     var yaSonando=false;
     try{yaSonando=!!(playing||paused)}catch(e){}
-    if(opt()!=="on"||yaSonando||corriendo)return _play.apply(window,arguments);
-    /* Encender el audio del programa ahora, con el toque: en Android, si se enciende
-       después de la meditación (sin toque), el sistema lo deja mudo */
-    try{if(typeof ensureCtx==="function"){ensureCtx();if(typeof wakeAudio==="function")wakeAudio()}}catch(e){}
+    if(opt()!=="on"||yaSonando||corriendo||document.getElementById("lmPreg"))return _play.apply(window,arguments);
     var args=arguments;
-    correr(function(){try{_play.apply(window,args)}catch(e){}});
+    preguntar(function(meditar){
+      /* Encender el audio del programa con este toque: en Android, si se enciende
+         después de la meditación (sin toque), el sistema lo deja mudo */
+      try{if(typeof ensureCtx==="function"){ensureCtx();if(typeof wakeAudio==="function")wakeAudio()}}catch(e){}
+      if(meditar)correr(function(){try{_play.apply(window,args)}catch(e){}});
+      else{try{_play.apply(window,args)}catch(e){}}
+    });
     return Promise.resolve();
   };
+}
+
+/* ---------- sugerencia: nada suena hasta que elijas ---------- */
+function preguntar(elegir){
+  var css=document.createElement("style");
+  css.textContent=[
+   "#lmPreg{position:fixed;inset:0;z-index:9997;background:rgba(12,10,20,.72);display:flex;align-items:center;justify-content:center;padding:20px}",
+   "#lmPreg .c{max-width:380px;width:100%;background:radial-gradient(420px 300px at 50% 0%,#2b2050,#141022);color:#f4eeff;border:1px solid rgba(201,167,255,.35);border-radius:24px;padding:24px 20px;text-align:center}",
+   "#lmPreg h3{font-size:1.25rem;font-weight:600;margin:6px 0 8px}",
+   "#lmPreg p{color:#cfc3ea;font-size:.95rem;line-height:1.5;margin:0 0 18px}",
+   "#lmPreg button{display:block;width:100%;border-radius:999px;padding:13px 18px;font:700 .95rem inherit;cursor:pointer;margin-top:10px}",
+   "#lmPreg .pri{background:linear-gradient(90deg,#c9a7ff,#ff9fd2);border:0;color:#2a1640}",
+   "#lmPreg .sec{background:transparent;border:1.5px solid rgba(201,167,255,.5);color:#e4d4ff}",
+   "#lmPreg .lnk{background:none;border:0;color:#bfb2dc;font-weight:600;font-size:.82rem;text-decoration:underline;padding:8px}"
+  ].join("");
+  document.head.appendChild(css);
+  var d=document.createElement("div");d.id="lmPreg";
+  d.innerHTML='<div class="c" role="dialog" aria-modal="true" aria-labelledby="lmPregT">'
+   +'<div style="font-size:1.8rem;color:#c9a7ff">&#10022;</div>'
+   +'<h3 id="lmPregT">¿Deseas iniciar con la meditación?</h3>'
+   +'<p>Un par de minutos para centrarte y calmarte, y recibir tu programa en un estado más receptivo.</p>'
+   +'<button type="button" class="pri" id="lmSi">Sí, meditar primero</button>'
+   +'<button type="button" class="sec" id="lmIr">Ir directo al programa</button>'
+   +'<button type="button" class="lnk" id="lmNo">No volver a preguntar</button></div>';
+  document.body.appendChild(d);
+  function cerrar(meditar,apagar){
+    try{d.remove()}catch(e){}try{css.remove()}catch(e){}
+    if(apagar){setOpt("off");toast&&toast("Puedes volver a activarla en Mi perfil")}
+    elegir(meditar);
+  }
+  d.querySelector("#lmSi").onclick=function(){cerrar(true,false)};
+  d.querySelector("#lmIr").onclick=function(){cerrar(false,false)};
+  d.querySelector("#lmNo").onclick=function(){cerrar(false,true)};
 }
 
 /* ---------- interruptor en Mi perfil ---------- */
